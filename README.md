@@ -92,9 +92,24 @@ cool语言，毕竟你是要开发cool语言的编译器的，不熟悉cool语�
 
 ### PA1
 
-实验一是写一个栈机器，目的是熟悉cool语言。我觉得关键在两点。一是熟悉题目要求：如图
+实验一是写一个栈机器，目的是熟悉cool语言。我觉得关键在三点。
+
+一是熟悉题目要求：如图
 
 ![](PA1.png)
+
+二是熟悉cool语法：
+
+由于cool编译器非常不友好，报错很不明显。所有必须先熟悉好cool语法才能写下去。我就是一开始太急了，没有完全熟悉就开始写（老毛病了）。我犯错：一没有明白对象的字段全部是私有的，在外部不
+能直接调用，manual原文： Attributes are visible throughout a class in which they are declared or inherited,二不知道不能对self进行赋值，self是不能修改的，原文：The 
+identifier self may be referenced, but it is an error to assign to self or to bind self in a let, acase, or as a formal parameter. It is also illegal to have 
+attributes named self.二者均可以用设立setter和getter方法去破解。熟悉了语法，做起来还是很轻松的。
+
+三是是注意atoi.cl文件的使用，可以调用A2I类相关接口实现String和Int之间的转化。指导书原文：If you wish, youmay use the classes defined in atoi.cl
+
+注意以上三点，实验一还是很轻松的
+
+
 
 
 
