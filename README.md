@@ -52,7 +52,7 @@ user code部分是相应代码，这部分由于实验用不到，暂时省略
 
 lex函数与变量：
 
-![](lex_var_and_func.png)
+![](lex_var_func.png)
 
 
 
