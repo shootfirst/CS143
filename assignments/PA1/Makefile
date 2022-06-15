@@ -23,6 +23,5 @@ test:	compile
 clean :
 	rm -f *.s core *~
 
-# 实现与栈机器交互
 play: compile
 	${CLASSDIR}/bin/spim -file stack.s

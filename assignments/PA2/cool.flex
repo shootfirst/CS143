@@ -43,6 +43,7 @@ extern YYSTYPE cool_yylval;
  *  Add Your own definitions here
  */
 
+static int comment_num = 0;
 %}
 
 /*
@@ -54,30 +55,12 @@ extern YYSTYPE cool_yylval;
  */
 
 DARROW          =>
-CLASS           class
-ELSE            else
-IF              if
-FI              fi
-IN              in
-INHERITS        inherits
-LET             let
-LOOP            loop
-POOL            pool
-THEN            then
-WHILE           while
-CASE            case
-ESAC            esac
-OF              of
-NEW             new
-ISVOID          isvoid
 ASSIGN          <-
-NOT             not
 LE              <=
 
 DIGIT           [0-9]+
-TYPEID          [A-Z][a-zA-Z_]*
-OBJECTID        [a-z][a-zA-Z_]*
-
+TYPEID          [A-Z][a-zA-Z0-9_]*
+OBJECTID        [a-z][a-zA-Z0-9_]*
 
 %Start          COMMENT
 %Start          STRING
@@ -108,7 +91,8 @@ OBJECTID        [a-z][a-zA-Z_]*
   */
 
 
-<INITIAL>"(*" {
+<INITIAL,COMMENT>"(*" {
+    comment_num ++;
     BEGIN(COMMENT);
 }
 
@@ -117,7 +101,9 @@ OBJECTID        [a-z][a-zA-Z_]*
 }
 
 <COMMENT>"*)" {
-    BEGIN(INITIAL);
+    comment_num --;
+    if (comment_num == 0)
+        BEGIN(INITIAL);
 }
 
 <COMMENT><<EOF>> {
@@ -130,13 +116,10 @@ OBJECTID        [a-z][a-zA-Z_]*
 
 <COMMENT>[(*)] {}
 
-"*)" {
+<INITIAL>"*)" {
     cool_yylval.error_msg = "Unmatched *)";
     return ERROR;
 }
-
-
-
 
 
  /*
@@ -152,10 +135,11 @@ OBJECTID        [a-z][a-zA-Z_]*
 <STRING><<EOF>> {
     cool_yylval.error_msg = "EOF in string constant";
     BEGIN(INITIAL);
+    yyrestart(yyin);
     return ERROR;
 }
 
-<STRING>[^\"\\\n\0]* {
+<STRING>[^\"\\\n]* {
     yymore();
 }
 
@@ -168,12 +152,6 @@ OBJECTID        [a-z][a-zA-Z_]*
     yymore();
 }
 
-<STRING>\0 {
-    cool_yylval.error_msg = "String contains null character";
-    BEGIN(INITIAL);
-    return ERROR;
-}
-
 <STRING>\n {
     cool_yylval.error_msg = "Unterminated string constant";
     curr_lineno ++;
@@ -184,6 +162,13 @@ OBJECTID        [a-z][a-zA-Z_]*
 <STRING>\" {
     std::string in(yytext, yyleng);
     in = in.substr(1, in.length() - 2);
+    std::string::size_type nul_pos;
+
+    if ((nul_pos = in.find_first_of('\0')) != std::string::npos) {
+        cool_yylval.error_msg = "String contains null character";
+        BEGIN(INITIAL);
+        return ERROR;
+    }
 
     std::string out = "";
     std::string::size_type pos;
@@ -221,7 +206,7 @@ OBJECTID        [a-z][a-zA-Z_]*
 
     out += in;
 
-    if (out.length() > MAX_STR_CONST) {
+    if (out.length() >= MAX_STR_CONST) {
         cool_yylval.error_msg = "String constant too long";
         BEGIN(INITIAL);
         return ERROR;
@@ -233,28 +218,78 @@ OBJECTID        [a-z][a-zA-Z_]*
 }
 
 
+
+
+
+
  /*
   *  keywords
   */
 
 
-{CLASS}     {  return (CLASS);  }
-{ELSE}      {  return (ELSE);   }
-{IF}        {  return (IF);     }
-{FI}        {  return (FI);     }
-{IN}        {  return (IN);     }
-{INHERITS}  {  return (INHERITS);}
-{LET}       {  return (LET);    }
-{LOOP}      {  return (LOOP);   }
-{POOL}      {  return (POOL);   }
-{THEN}      {  return (THEN);   }
-{WHILE}     {  return (WHILE);  }
-{CASE}      {  return (CASE);   }
-{ESAC}      {  return (ESAC);   }
-{OF}        {  return (OF);     }
-{NEW}       {  return (NEW);    }
-{ISVOID}    {  return (ISVOID); }
-{NOT}       {  return (NOT);    }
+(?i:class)     {  return (CLASS);  }
+(?i:else)      {  return (ELSE);   }
+(?i:if)        {  return (IF);     }
+(?i:fi)        {  return (FI);     }
+(?i:in)        {  return (IN);     }
+(?i:inherits)  {  return (INHERITS);}
+(?i:let)       {  return (LET);    }
+(?i:loop)      {  return (LOOP);   }
+(?i:pool)      {  return (POOL);   }
+(?i:then)      {  return (THEN);   }
+(?i:while)     {  return (WHILE);  }
+(?i:case)      {  return (CASE);   }
+(?i:esac)      {  return (ESAC);   }
+(?i:of)        {  return (OF);     }
+(?i:new)       {  return (NEW);    }
+(?i:isvoid)    {  return (ISVOID); }
+(?i:not)       {  return (NOT);    }
+
+
+  /*
+  *  true and false
+  */
+
+t[rR][uU][eE] {
+    cool_yylval.boolean = true;
+    return BOOL_CONST;
+}
+
+f[aA][lL][sS][eE] {
+    cool_yylval.boolean = false;
+    return BOOL_CONST;
+}
+
+
+ /*
+  *  integers
+  */
+
+{DIGIT}     {
+    cool_yylval.symbol = inttable.add_string(yytext);
+    return INT_CONST;
+}
+
+ /*
+  *  object identifiers
+  */
+
+
+{OBJECTID}  {
+    cool_yylval.symbol = idtable.add_string(yytext);
+    return OBJECTID;
+}
+
+
+ /*
+  *  type identifiers
+  */
+
+
+{TYPEID}    {
+    cool_yylval.symbol = idtable.add_string(yytext);
+    return TYPEID;
+}
 
 
  /*
@@ -283,59 +318,13 @@ OBJECTID        [a-z][a-zA-Z_]*
 ":"         {  return int(':');  }
 
 
- /*
-  *  type identifiers
-  */
-
-
-{TYPEID}    {
-    cool_yylval.symbol = idtable.add_string(yytext);
-    return TYPEID;
-}
-
-
- /*
-  *  object identifiers
-  */
-
-
-{OBJECTID}  {
-    cool_yylval.symbol = idtable.add_string(yytext);
-    return OBJECTID;
-}
-
-
- /*
-  *  integers
-  */
-
-{DIGIT}     {
-    cool_yylval.symbol = inttable.add_string(yytext);
-    return INT_CONST;
-}
-
-
-  /*
-  *  true and false
-  */
-
-t[rR][uU][eE] {
-    cool_yylval.boolean = true;
-    return BOOL_CONST;
-}
-
-f[aA][lL][sS][eE] {
-    cool_yylval.boolean = false;
-    return BOOL_CONST;
-}
-
 
  /*
   *  white space
   */
 
 
-[ \t\b\f]+ {}
+[ \t\r\f\v]+ {}
 
 \n {  curr_lineno++; }
 
