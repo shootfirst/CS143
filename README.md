@@ -27,37 +27,27 @@ attributes named self.二者均可以用设立setter和getter方法去破解。�
 
 ## PA2
 
-从实验二开始就正式进入编写cool语言编译器了。实验二是词法分析，使用工具flex。故在开始编写程序之前一定要熟悉好flex的使用，还有便是充分阅读PA2.pdf熟悉实验要求，最后是注意阅读cool——
-manual的第10章。
+从实验二开始就正式进入编写cool语言编译器了。实验二是词法分析，使用工具flex。
 
-在此记录flex的学习笔记先：
+首先说明下实验二需要阅读学习的部分：
 
-flex语法分为三个部分（可以省略这些部分，不一定全部都有）：
+    - cool-manual 第10章 lexical structure
 
-definition
-%%
-rules
-%%
-user code
+    - flex-manual，重点是三大模块的前两个结构规范，flex函数与变量
 
-下面对三个部分进行分析
+    - PA2.pdf
 
-definition部分主要是两部分：第一部分是使用c语言代码进行预处理，比如引入头文件、定义宏。语法完全同c语言。定义于%{ %}包裹的部分。第二部分可以进行flex自己的定义，如一些正则表达式的定义
-如： IDENTIFIER [a-zA-Z_]+[a-zA-Z0-9_]*
+需要修改的文件：cool.flex
 
-rules部分是对匹配相应的字符串进行相应操作，没有被匹配的原封不动写入输出文件，被匹配但是不采取任何动作的被丢弃。匹配有两个原则，一是尽可能匹配长的字符串；二是同等长度匹配，前面的优先被
-匹配。写法如下：{正则表达式或定义}		{ 动作 }。如果按这样的格式：
+官方评测脚本：https://courses.edx.org/assets/courseware/v1/2aa4dec0c84ec3a8d91e0c1d8814452b/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block/pa1-grading.pl
 
-正则表达式 {
-}
+评测步骤：
 
-注意正则表达式一定要顶格，不能加空格。其次是正则表达式和“{”间必须有空格。“}”也需顶格。
+make clean
 
-user code部分是相应代码，这部分由于实验用不到，暂时省略
+make lexer
 
-lex函数与变量：
-
-![](lex_var_func.png)
+perl pa1-grading.pl
 
 
 词法分析大概可以分为一下几个部分：
@@ -81,8 +71,75 @@ lex函数与变量：
 若遇到（* 则进入comment，在多行注释中需要注意，若遇到eof，则必须转入initial状态，否则会陷入无限循环。其次便是遇到*）则需要退出多行注释状态，这点实现稍微复杂，要确保*）不会被匹配称为
 comment的一部分。
 
-若遇到"则进入string，主要麻烦在转义字符的匹配。首先对于\\、\n、\0、\"四个符号之外可以随意匹配。遇到eof则需要转入initial状态。遇到//则分情况讨论，若接下来是\n，则需要行数++，其余只
-需继续匹配即可。遇到\n则返回error，
+若遇到"则进入string，主要麻烦在转义字符的匹配。首先对于\\、\n、\0、\"四个符号之外可以随意匹配。遇到eof则需要转入initial状态。遇到\\则分情况讨论，若接下来是\n，则需要行数++，其余只
+需继续匹配即可。遇到\n则返回error。遇到"则识别结束，开始对字符串的转移字符处理。
+
+好了这是我一开始的做法，处理完good.cl和bad.cl的输出与coolc的输出无区别，可是这两个有很多地方没有测试到位。后面发现还有官方评测脚本，于是下载下来评分，只有30几分，出了好多错误，于是跟
+着相关测试脚本一个个去修改，主要是一下几个问题：
+
+多行注释出错：无法处理嵌套注释，根据提示修改，在<INITIAL,COMMENT>两种状态下遇到（* 时将嵌套深度++。遇到*）时将嵌套深度--，嵌套深度为全局静态变量，初始值为0
+
+无法识别出true与false：开始以为自己对true与false的词法格式没有看明白，最后才发现是识别顺序的问题，最后把识别顺序改为keywords true and false，然后才是其他的，必须要确保true 和
+false的识别在标识符前面。
+
+空字符串出错：这主要是没有阅读清楚题目的意思，如果字符串中出现null，必须坚持识别完整个字符串，而不是遇到null就报错，从下一个又继续开始识别。所以遇到\0照样接收，只是最后遇到"结束时扫
+描整个字符串，遇到\0则整个识别为error就行。
+
+eof字符串出错：遇到elf时还需注意yyrestart(yyin)，看flex文档说明（做之前一定要看明白flex-manual，里面很详细很全！！！）：
+
+If the scanner reaches an end-of-file, subsequent calls are undefined unless either yyin is pointed at a new input file (in which case scanning continues from that 
+file), or `yyrestart()' is called. `yyrestart()' takes one argument, a `FILE *' pointer (which can be nil, if you've set up YY_INPUT to scan from a source other than 
+yyin), and initializes yyin for scanning from that file. Essentially there is no difference between just assigning yyin to a new input file or using `yyrestart()' to 
+do so; the latter is available for compatibility with previous versions of flex, and because it can be used to switch input files in the middle of scanning. It can 
+also be used to throw away the current input buffer, by calling it with an argument of yyin; but better is to use YY_FLUSH_BUFFER (see above). Note that `yyrestart()' 
+does not reset the start condition to INITIAL (see Start Conditions, below).
+
+还是有点疑惑，为什么comment遇到elf不加没事，string加yyrestart(yyin)才让我通过呢？这难道是评测脚本的问题？还是我有细节没有注意？以后研究。
+
+最后是空字符的识别：应该是如下几个 \t\r\f\v\n，遇到\n注意换行，不要漏了空格！也是没有仔细阅读cool-manual 第10章 lexical structure。
+
+
+## PA3
+
+实验三是语法分析，使用bison，如果没有flex和bison的基础（比如我）可能得耽误不少时间去学习。
+
+实验三需要阅读的部分：
+
+    - PA3.pdf
+
+    - bison-manual
+    
+    - cool-tour.pdf第六章（PA3有提及）
+    
+    - cool-manual 第11章和第12章最前面（不需阅读12.1）
+    
+要看的还是蛮多的，得仔细阅读，正好考验自己的英文阅读水平。
+
+需要修改的文件：cool.y
+
+官方评测脚本：https://courses.edx.org/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block@pa2-grading.pl
+
+评测步骤：
+
+make clean
+
+make lexer
+
+make parser
+
+perl pa2-grading.pl
+
+
+语法分析，在阅读完以上代码后，最主要还是对下面这张图，按此图来写基本上差不多的，当然也有一些小细节需要注意：
+
+
+
+
+
+
+
+
+
 
 
 
