@@ -135,6 +135,17 @@ perl pa2-grading.pl
 
 ![](parser.png)
 
+第一个是let的书写，由于let也存在递归结构，单独分出lettype可以更方便地去书写。
+
+第二个是注意formal的expression和其他的expression是有区别的，它们直接是"，"隔开，我一开始一直没有找到这个区别，导致评分一直没有上去
+
+最后就是错误处理，可以看cs144的视频关于语法分析错误处理部分，我的理解主要就是递归出现的地方，需要加上错误处理：class_list、feature_list、 exp_list、let四个地方
+
+
+## PA4
+
+
+
 
 
 
