@@ -144,6 +144,7 @@ perl pa2-grading.pl
 
 ## PA4
 
+实验四有点难，代码量加大
 
 
 
