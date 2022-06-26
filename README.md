@@ -144,7 +144,79 @@ perl pa2-grading.pl
 
 ## PA4
 
-实验四有点难，代码量加大
+实验四有点难，代码量加大。
+
+首先说明一下需要仔细阅读的材料：
+
+    - PA4.pdf
+    
+    - cool-manual 第12章
+    
+    - symtab.h与tree.h相关接口
+    
+需要修改的文件：cool-tree.h  semant.h  semant.cc(主要)
+
+
+
+官方评测脚本：https://courses.edx.org/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block@pa2-grading.pl
+
+    
+下面说明一下思路：
+
+实验要求：输入没有type的ast，输出有type的ast。即每个表达式都要有type的标记，同时还有检查是否有错误。原文：The semantic phaseshould correctly annotate ASTs with types and 
+should work correctly with the coolc code generator.
+
+错误的处理：PA4.pdf原文：You are expected to recoverfrom all errors except for ill-formed class hierarchies.故若第一次遍历出错，则直接结束语法制导翻译。其他错误则抛开此
+小错误，从下一个继续开始。
+
+关键数据结构1：ClassTable
+
+添加两个unordered_map，一是inherit_map，存储类继承图；二是class_map，存储类名和类变量的对应关系。
+
+关键数据结构2：Envmt（第二次遍历想到）
+
+SymbolTable是符号表，定义在symtab.h，存储标识符的名称和类别，这是它的关键接口：enterscope()、exitscope()、addid(SYM s, DAT *i)、lookup(SYM s)、probe(SYM s)，一个ClassTable，
+以及current_class构成了环境。
+
+
+program_class类的semant方法是语法制导翻译的入口，是语法制导翻译的核心代码，以下所有都围绕此方法展开。
+
+
+    + 首先semant方法中，实验给的代码调用了ClassTable的构造函数，传入的参数则是包括除了所有非基本类的所有类的链表classes。所以，我们必须在构造方法中将所有类加入到table中。
+
+        * 在构造方法中，首先会调用基本类的初始化install_basic_classes()，此方法应该修改，方法最后调用调用add_class_to_classtable()，将5个基本类加入table。
+
+        * 调用add_class_to_classtable()，然后将传入的classes链表中所有类加入table。
+        
+            - add_class_to_classtable()中，主要是对加入时的类进行一次检查，此次检查主要是三个判断：类名不能是SELF_TYPE；不能继承Str、Bool和Int三个基本类；类不能重复定义。PA4.pdf
+              提到过：In addition, Cool has restrictions on inheriting from the basic classes (see the manual). It is also an error if class A inherits from class B but 
+              class B is not defined. 为什么在这里对这三个进行检查，是因为这三个检查成本低，在加入时即可检查，而且检查条件不像检查继承图是否无环那样需要所有类都加入后才能检查。在满
+              足上述三个条件后，将此class加入inherit_map和class_map中。若检查出错，则不能加入到table，注意我们的一开始写的错误检查原则。
+
+    + 然后开始第一次遍历ast，主要是检查是否无环、是否未定义Main类，是否继承的类未被定义，这三个检查必须是所有类都被加入继承图，才能检查。可以通过一次遍历完成所有检查。
+    
+        * 无环检查主要是对哈希表的每一项，不停求其父节点，直到到达No_type，假如最后到达了自己，则有环。
+        
+    + 若第一次遍历出错则不能进行第二次ast遍历。第二次ast遍历更为复杂，主要是scope check和type check。需要用到环境，代表omc
+
+    + 第一次遍历未出错，进行第二次遍历。首先是环境新建，传入之前class_table作为参数
+    
+    + 开始遍历classes里面的所有类
+    
+    + 首先进入到该类作用域
+    
+    + 对该类的所有属性进行收集gather_attribute()，放入SymbolTable符号表，因为属性在类中是全局的
+    
+        * gather_attribute()中，注意，首先应该将所有祖先的attrubite加入，这里使用递归。
+        
+        * 然后再加入自己类的，若发生重复定义，则报错，不将其加入table，继续处理其他属性。注意features中不仅有属性，还有方法，对于方法，我们不做任何处理。
+        
+    + 最后就是最核心，最关键的一步，调用此类的type_check()。首先总的说一下，每个cool-tree.h中的inode都有自己的type_check方法，对于expression的type_check，应该着重参考cs143课程或
+      者cool-manual 第12章。注意到我们的主要目标就是给ast
+
+
+
+
 
 
 
