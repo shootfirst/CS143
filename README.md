@@ -166,6 +166,8 @@ perl pa2-grading.pl
 实验要求：输入没有type的ast，输出有type的ast。即每个表达式都要有type的标记，同时还有检查是否有错误。原文：The semantic phaseshould correctly annotate ASTs with types and 
 should work correctly with the coolc code generator.
 
+说一下SELF_TYPE能及不能出现的地方：
+
 错误的处理：PA4.pdf原文：You are expected to recoverfrom all errors except for ill-formed class hierarchies.故若第一次遍历出错，则直接结束语法制导翻译。其他错误则抛开此
 小错误，从下一个继续开始。
 
@@ -197,13 +199,15 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
     
         * 无环检查主要是对哈希表的每一项，不停求其父节点，直到到达No_type，假如最后到达了自己，则有环。
         
-    + 若第一次遍历出错则不能进行第二次ast遍历。第二次ast遍历更为复杂，主要是scope check和type check。需要用到环境，代表omc
+    + 若第一次遍历出错则不能进行第二次ast遍历。第二次ast遍历更为复杂，主要是scope check和type check，注意除了二者之外还有其他的。需要用到环境，代表omc
 
     + 第一次遍历未出错，进行第二次遍历。首先是环境新建，传入之前class_table作为参数
     
     + 开始遍历classes里面的所有类
     
-    + 首先进入到该类作用域
+    + 首先进入到该类作用域,明确以下什么时候需要enterscope()和exitscope()，PA4.pdf说：Besides the identifier self, which is implicitly bound in every class, there are four 
+      ways that an objectname can be introduced in Cool:attribute definitions;formal parameters of methods;let expressions;branches of case statements。也就是说，除了进
+      入每个类，还要在这四个地方进行enterscope()和exitscope()。
     
     + 对该类的所有属性进行收集gather_attribute()，放入SymbolTable符号表，因为属性在类中是全局的
     
@@ -211,8 +215,46 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
         
         * 然后再加入自己类的，若发生重复定义，则报错，不将其加入table，继续处理其他属性。注意features中不仅有属性，还有方法，对于方法，我们不做任何处理。
         
-    + 最后就是最核心，最关键的一步，调用此类的type_check()。首先总的说一下，每个cool-tree.h中的inode都有自己的type_check方法，对于expression的type_check，应该着重参考cs143课程或
-      者cool-manual 第12章。注意到我们的主要目标就是给ast
+    + 最后就是最核心，最关键的一步，调用此类的type_check()。首先总的说一下，每个cool-tree.h中的inode都有自己的type_check方法，下面，我将自顶向下地去讲解所有inode类型type_check。
+      注意，每一次check都将环境作为参数传递进去，返回值则是自身，返回值的作用主要是取其type进行检查。
+      
+      
+    + 首先是class的type_check，class中有啥？attribute和method，它们都继承于feature，所以，对于class的type_check，就是对其的feature链表中每一个feature调用其type_check即可
+    
+        * attribute的type_check主要三步（首尾应该进入和退出作用域）：
+        
+            - 加入self，类型为cur_class
+            
+            - 对init表达式进行type_check，注意看这里开始对最主要的expression开始了type_check。有两个目的，一是对表达式的scope、type进行check，二是取返回值类型与type_decl进行比
+              对
+            
+            - 取返回值类型与type_decl进行比对，首先只要涉及到赋值，都不能对self进行，其次判断type_decl是否存在，最后判断init_type是否为Notype，因为init表达式可以不存在。不为则判
+              断祖先关系
+              
+        * method的type_check主要四步（首尾应该进入和退出作用域）：
+         
+            - 加入self，类型为cur_class
+            
+            - 对所有formal进行type_check
+            
+            - 然后是对此方法和父类方法的对比，看是否正确重写（这点容易漏）
+            
+            - 对方法体expr进行type_check，此处又是对表达式的type_check，这是主角。取其实际返回值
+            
+            - 最后是方法返回值和实际返回值对比
+            
+        * method的type_check和attribute的都包括对expression的type_check，这是主角，还有对formal的check，以下先介绍formal的check
+        
+        * 对formal的type_check，将其加入当前envmt,若重复定义，则报错
+        
+        * expression的type_check，参考cs143课程或者cool-manual 第12章。注意到我们的主要目标就是给ast注释上type，这是expression的type_check()的功能之一。遇到错误类型表达式，
+          cs143课程提供一个解决方案：将类型Object分配给错误类型的表达式。
+          
+          
+        
+            
+        
+            
 
 
 
