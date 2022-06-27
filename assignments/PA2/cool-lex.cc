@@ -1957,7 +1957,7 @@ case YY_STATE_EOF(STRING):
 {
     cool_yylval.error_msg = "EOF in string constant";
     BEGIN(INITIAL);
-    yyrestart(yyin);
+    
     return ERROR;
 }
 	YY_BREAK

@@ -1,0 +1,3 @@
+./trickyatdispatch2.test:9: Wrong class!
+./trickyatdispatch2.test:10: True return type isn't subclass of return type!
+Compilation halted due to static semantic errors.

@@ -1,0 +1,3 @@
+#name "./escapedeof.cool"
+#2 ERROR "EOF in string constant"
+fatal flex scanner internal error--end of buffer missed
