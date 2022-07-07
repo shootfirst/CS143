@@ -144,8 +144,6 @@ perl pa2-grading.pl
 
 ## PA4
 
-实验四有点难，代码量加大。
-
 首先说明一下需要仔细阅读的材料：
 
     - PA4.pdf
@@ -154,11 +152,11 @@ perl pa2-grading.pl
     
     - symtab.h与tree.h相关接口
     
-需要修改的文件：cool-tree.h  semant.h  semant.cc(主要)
+主要需要修改的文件：cool-tree.h  semant.h  semant.cc
 
 
 
-官方评测脚本：https://courses.edx.org/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block@pa2-grading.pl
+官方评测脚本：wget https://courses.edx.org/assets/courseware/v1/2aa4dec0c84ec3a8d91e0c1d8814452b/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block/pa3-grading.pl
 
     
 下面说明一下思路：
@@ -177,8 +175,8 @@ should work correctly with the coolc code generator.
 
 关键数据结构2：Envmt（第二次遍历想到）
 
-SymbolTable是符号表，定义在symtab.h，存储标识符的名称和类别，这是它的关键接口：enterscope()、exitscope()、addid(SYM s, DAT *i)、lookup(SYM s)、probe(SYM s)，一个ClassTable，
-以及current_class构成了环境。
+SymbolTable是符号表，定义在symtab.h，存储标识符的名称和类别，这是它的关键接口：enterscope()、exitscope()、addid(SYM s, DAT *i)、lookup(SYM s)、probe(SYM s)，一个
+ClassTable，以及current_class构成了环境。
 
 
 program_class类的semant方法是语法制导翻译的入口，是语法制导翻译的核心代码，以下所有都围绕此方法展开。
@@ -225,11 +223,11 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
         
             - 加入self，类型为cur_class
             
-            - 对init表达式进行type_check，注意看这里开始对最主要的expression开始了type_check。有两个目的，一是对表达式的scope、type进行check，二是取返回值类型与type_decl进行比
-              对
+            - 对init表达式进行type_check，注意看这里开始对最主要的expression开始了type_check。有两个目的，一是对表达式的scope、type进行check，二是取返回值类型与type_decl
+              进行比对
             
-            - 取返回值类型与type_decl进行比对，首先只要涉及到赋值，都不能对self进行，其次判断type_decl是否存在，最后判断init_type是否为Notype，因为init表达式可以不存在。不为则判
-              断祖先关系
+            - 取返回值类型与type_decl进行比对，首先只要涉及到赋值，都不能对self进行，其次判断type_decl是否存在，最后判断init_type是否为Notype，因为init表达式可以不存在。
+              不为则判断祖先关系
               
         * method的type_check主要四步（首尾应该进入和退出作用域）：
          
@@ -247,8 +245,44 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
         
         * 对formal的type_check，将其加入当前envmt,若重复定义，则报错
         
-        * expression的type_check，参考cs143课程或者cool-manual 第12章。注意到我们的主要目标就是给ast注释上type，这是expression的type_check()的功能之一。遇到错误类型表达式，
-          cs143课程提供一个解决方案：将类型Object分配给错误类型的表达式。
+        * expression的type_check，参考cs143课程或者cool-manual 第12章。注意到我们的主要目标就是给ast注释上type，这是expression的type_check()的功能之一。遇到错误类型表达 
+          式，cs143课程提供一个解决方案：将类型Object分配给错误类型的表达式。
+          
+## PA5
+
+最后一个实验，代码生成
+
+首先说明一下需要仔细阅读的材料：
+
+    - PA5.pdf
+    
+    - cool-runtime 
+    
+    - cool-manual 第13章
+    
+主要需要修改的文件：cgen.h  cgen.cc
+
+
+
+官方评测脚本：wget https://courses.edx.org/assets/courseware/v1/2aa4dec0c84ec3a8d91e0c1d8814452b/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block/pa4-grading.pl
+
+说明一下思路：
+
+了解cool-runtime之后，从PA5.pdf中可得知需要完成下列任务：
+
+In considering your design, at a high-level, your code generator will need to perform the following tasks:
+
+1. Determine and emit code for global constants, such as prototype objects.
+
+2. Determine and emit code for global tables, such as the class nameTab, the class objTab, and the dispatch tables.
+
+3. Determine and emit code for the initialization method of each class.
+
+4. Determine and emit code for each method definition.
+
+program class::cgen(ostream&)方法是代码生成的入口，在里面调用CgenClassTable的构造方法，在里面code()方法，code()方法就是代码生成的核心方法。按以下步骤来：
+
+在code()方法之前，先调用set_tag()方法设置所有class的tag，没啥讲究，单纯按
           
           
         
