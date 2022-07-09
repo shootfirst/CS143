@@ -421,7 +421,7 @@ program class::cgen(ostream&)方法是代码生成的入口，在里面调用Cge
             * generate_one_dispatch_table：生成单个类所有方法：首先得到所有祖先类的链表，从object类开始，遍历此链表，遍历所有方法，加入到方法数组，若出现重复的，代表重写了               此方法，代替之，注意必须是在它原来数组的位置取代，因为必须保证和祖先类相同方法偏移量一致。然后对所有方法生成引用，同时将所有方法偏移量记录在method_off中
         
         - generate_prototype_obj：生成prototype类。在调用emit_protobj_ref生成tab之前，生成-1，表示Garbage Collector Tag，因为其偏移量是-4。接下来调用emit_protobj_ref生成
-          prototype_objtab，加上label。依次生成Class tag，Object size，Dispatch pointer。这里注意，int，bool只有一个attr，而str有两个，一个是字符串，一个是长度。其他类则
+          prototype_objtab，加上label。依次生成Class tag，Object size，Dispatch pointer。这里注意，int，bool只有一个attr，而str有两个，长度、字符串。其他类则
           调用collect_all_attr收集所有属性，生成之，若属性类型是三大基本类，则直接生成其prototype_obj引用，其他生成0，表示空指针。
           
             * collect_all_attr： 收集所有属性。首先得到所有祖先类的链表，从object类开始，遍历此链表，遍历所有属性，加入到属性数组。最后记录该类所有属性偏移量到attr_off中
