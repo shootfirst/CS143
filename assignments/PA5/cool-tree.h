@@ -10,6 +10,7 @@
 
 
 #include "tree.h"
+#include "cgen.h"
 #include "cool-tree.handcode.h"
 
 
@@ -36,6 +37,9 @@ public:
    tree_node *copy()		 { return copy_Class_(); }
    virtual Class_ copy_Class_() = 0;
 
+   // my add
+   virtual Features get_features() = 0;
+
 #ifdef Class__EXTRAS
    Class__EXTRAS
 #endif
@@ -50,6 +54,13 @@ public:
    tree_node *copy()		 { return copy_Feature(); }
    virtual Feature copy_Feature() = 0;
 
+   // my add
+   virtual bool is_method() = 0;
+   virtual Symbol get_name() = 0;
+   virtual Symbol get_type_decl() = 0;
+   virtual void code(ostream &s, CgenClassTable& cgen_class) = 0;
+   virtual Formals get_formals() = 0;
+
 #ifdef Feature_EXTRAS
    Feature_EXTRAS
 #endif
@@ -63,6 +74,9 @@ class Formal_class : public tree_node {
 public:
    tree_node *copy()		 { return copy_Formal(); }
    virtual Formal copy_Formal() = 0;
+
+   // my add
+   virtual Symbol get_name() = 0;
 
 #ifdef Formal_EXTRAS
    Formal_EXTRAS
@@ -92,6 +106,9 @@ public:
    tree_node *copy()		 { return copy_Case(); }
    virtual Case copy_Case() = 0;
 
+   // my add
+    virtual Symbol get_type() = 0;
+    virtual Symbol get_name() = 0;
 #ifdef Case_EXTRAS
    Case_EXTRAS
 #endif
@@ -162,6 +179,9 @@ public:
    Class_ copy_Class_();
    void dump(ostream& stream, int n);
 
+   // my add
+   Features get_features() { return features; };
+
 #ifdef Class__SHARED_EXTRAS
    Class__SHARED_EXTRAS
 #endif
@@ -188,6 +208,14 @@ public:
    Feature copy_Feature();
    void dump(ostream& stream, int n);
 
+   // my add
+   bool is_method() { return true; };
+   Symbol get_name() { return name; };
+   Symbol get_type_decl() { return NULL; };
+   void code(ostream &s, CgenClassTable& cgen_class);
+   Formals get_formals() { return formals; };
+   
+
 #ifdef Feature_SHARED_EXTRAS
    Feature_SHARED_EXTRAS
 #endif
@@ -212,6 +240,13 @@ public:
    Feature copy_Feature();
    void dump(ostream& stream, int n);
 
+   // my add
+   bool is_method() { return false; };
+   Symbol get_name() { return name; };
+   Symbol get_type_decl() { return type_decl; };
+   void code(ostream &s, CgenClassTable& cgen_class);
+   Formals get_formals() { return NULL; };
+
 #ifdef Feature_SHARED_EXTRAS
    Feature_SHARED_EXTRAS
 #endif
@@ -233,6 +268,9 @@ public:
    }
    Formal copy_Formal();
    void dump(ostream& stream, int n);
+
+   // my add
+   Symbol get_name() { return name; };
 
 #ifdef Formal_SHARED_EXTRAS
    Formal_SHARED_EXTRAS
@@ -257,6 +295,10 @@ public:
    }
    Case copy_Case();
    void dump(ostream& stream, int n);
+
+   // my add 
+   Symbol get_type() { return type_decl; };
+   Symbol get_name() { return name; };
 
 #ifdef Case_SHARED_EXTRAS
    Case_SHARED_EXTRAS
