@@ -280,9 +280,209 @@ In considering your design, at a high-level, your code generator will need to pe
 
 4. Determine and emit code for each method definition.
 
-program class::cgen(ostream&)方法是代码生成的入口，在里面调用CgenClassTable的构造方法，在里面code()方法，code()方法就是代码生成的核心方法。按以下步骤来：
+首先介绍相关数据结构：
 
-在code()方法之前，先调用set_tag()方法设置所有class的tag，没啥讲究，单纯按
+subclass_idrange：记录所有类子节点classtag区间
+tag_to_class：记录所有类子节点
+class_depth：记录所有类在继承树中深度
+sym_tbl：记录变量的偏移量（属性、局部变量、形参），同时还提供进入和退出当前作用域的接口函数，偏移量结构体见下
+attr_off：所有类属性的偏移量
+method_off：所有类方法的偏移量
+labbelid：用于label的产生，从0开始
+loc_var_off：局部变量距当前FP指针的偏移量，从-3开始
+
+偏移量结构体：
+struct Loc {
+   BASE_LOC_TYPE base_loc;
+   int offset;
+};
+
+偏移量基地址种类：
+enum class BASE_LOC_TYPE {
+   SELF_,
+   FP_
+};
+
+
+下面再介绍相关代码的具体布局，参考cool-runtime.pdf：
+
+    + class_nameTab
+    
+        - class_name pointer 1      
+        
+        - ......
+        
+        - class_name pointer n
+    
+    + class objTab
+        
+        - prototype object pointer 1
+        - class_init pointer 1
+        
+        - ......
+        
+        - prototype object pointer n
+        - class_init pointer n
+    
+    + dispatch_table 1
+        
+        - method pointer 1
+        
+        - ......
+        
+        - method pointer n
+        
+    + ......
+    
+    + dispatch_table n
+        
+        - garbage collector tag
+    + prototype_obj 1
+        - class tag 
+        - object size (in 32-bit words)
+        - dispatchTab pointer
+        - attribute 1
+        - ......
+        - attribute n
+        
+    + ......
+    
+        - garbage collector tag
+    + prototype_obj n
+        - class tag 
+        - object size (in 32-bit words)
+        - dispatch pointer
+        - attribute 1
+        - ......
+        - attribute n
+        
+    + ......
+        
+    + class_init 1
+    
+    + ......
+    
+    + class_init n
+    
+    
+    + class1.method 1
+    
+    + ......
+    
+    + class1.method n
+    
+    + ......
+    
+    + classn.method n
+    
+    
+方法调用时参数传递与寄存器保护：
+    
+    + arg n
+    
+    + ......
+    
+    + arg 1
+    
+    + old fp  <-- fp
+    
+    + t0
+    
+    + ra  <--sp
+
+寻址类型：
+    
+    + SELF。靠self寻址，主要是类的属性、方法表、classtag等
+    + FP。靠FP寻址，主要是实参、局部变量
+
+
+代码思路：
+
+program class::cgen(ostream&)方法是代码生成的入口，在里面调用CgenClassTable的构造方法。
+
+    + set_tag：设置所有类的class_tag。方法是按先序遍历继承树来设置各个class的class_tag，同时记录类节点深度和子节点tag区间。至于为什么这么做见case语句的code方法。主要是参考
+      此链接。
+      
+    + CgenClassTable::code方法：是核心，设置上面相关表的具体布局代码生成，之后完成类的初始化代码生成，最后完成所有方法的代码生成。注意，三大类没有初始化则默认初始化（对任
+      意表的ref方法，没有加label则代表生成该table地址，后面加label则代表生成此表，以下提到的生成或者一些行为，比如计算a+b的值，基本指生成相关mips代码根据语境感受）依次调用
+      如下方法：
+    
+        - generate_class_nameTab：生成nameTab表，按classTag顺序排放所有类名指针，原文：A table, which at index (class tag) ∗ 4 contains a pointer Data to a
+          String object containing the name of the class associated。重点是：4字节，按classtag顺序来。首先必须生成classtab，注意最后加上label，然后查询到相关entry，
+          调用code_ref方法生成存储指针的代码。
+          
+        - generate_classObj_tab：生成classObj_tab表，按classTag顺序排放prototype object指针与classinit方法指针，原文：A table, which at index (class tag) ∗ 8 contains a 
+          pointer to the prototype object and at index (class tag) ∗ 8 + 4 contains a pointer to the initialization method for that class.首先必须生成label，指示此处是
+          classobjtab，随后对每个类，调用emit_protobj_ref和emit_init_ref生成存储二者指针的代码
+          
+        - generate_dispatch_tables：生成所有类的所有方法表，此处不要求按classtag顺序来，对所有的类，调用emit_disptable_ref生成方法表标签，最后加上label。然后调用
+          generate_one_dispatch_table生成该类的所有方法地址（不加label）
+          
+            * generate_one_dispatch_table：生成单个类所有方法：首先得到所有祖先类的链表，从object类开始，遍历此链表，遍历所有方法，加入到方法数组，若出现重复的，代表重写了               此方法，代替之，注意必须是在它原来数组的位置取代，因为必须保证和祖先类相同方法偏移量一致。然后对所有方法生成引用，同时将所有方法偏移量记录在method_off中
+        
+        - generate_prototype_obj：生成prototype类。在调用emit_protobj_ref生成tab之前，生成-1，表示Garbage Collector Tag，因为其偏移量是-4。接下来调用emit_protobj_ref生成
+          prototype_objtab，加上label。依次生成Class tag，Object size，Dispatch pointer。这里注意，int，bool只有一个attr，而str有两个，一个是字符串，一个是长度。其他类则
+          调用collect_all_attr收集所有属性，生成之，若属性类型是三大基本类，则直接生成其prototype_obj引用，其他生成0，表示空指针。
+          
+            * collect_all_attr： 收集所有属性。首先得到所有祖先类的链表，从object类开始，遍历此链表，遍历所有属性，加入到属性数组。最后记录该类所有属性偏移量到attr_off中
+              ，返回属性数组。
+        
+        
+        - class_init：生成所有类class_init方法。遍历所有类，进入作用域，对attr_off中当前类所有属性，全部加入到sym_tbl中，寻址类型为self指针，偏移量为attr_off+3，自己思考
+          为啥。调用emit_init_ref生成init方法引用，加上label。调用emit_method_begin方法保存寄存器，若当前类不为object，需传递self到a0寄存器，然后调用父类class_init方法，
+          让父类初始化self中父类定义属性。之后对所有属性，调用attr类的code方法，生成初始化的mips代码。最后调用emit_method_end方法恢复寄存器，退出当前作用域。若当前类为三大
+          基本类，则无需任何初始化
+          
+          
+            * emit_method_begin：方法开始前调用此方法保存相关寄存器。采取栈机器模型，sp-12，从上到下保存old fp、t0、ra。然后将fp移到old fp位置。最后将ACC传入SELF。
+            
+            * emit_method_end：恢复以上寄存器。注意栈需要加(argc + 3)*4，这个argc是函数参数数量，至于实参什么时候被保存到栈中，见方法调用。
+        
+        - class_method：生成所有类的所有方法代码。遍历所有类，若是五大基本类，则继续。设置当前类，否则进入作用域，对attr_off中当前类所有属性，全部加入到sym_tbl中，寻址类型
+          为self指针，偏移量为attr_off+3，同上。对于当前类所有方法，首先调用emit_method_ref生成引用，加上label，然后调用method类的code方法生成其mips代码。最后退出当前作用
+          。域
+        
+    + 下面介绍各个类的code方法，主要介绍attr、method、assign、dispatch、cond、case、let、eq、new、isvoid和object的code方法
+        
+        - attr：首先判断初始化表达式是否为空，为空则直接返回，不产生任何代码。否则调用init的code方法，产生的值是存于a0中的，查找此attr的偏移量，生成将a0的值送入self+此偏移
+          量中的代码，最后将self送入a0中返回。
+          
+        - method：进入作用域，建立参数数组，将所有参数倒序加入sym_tbl中，寻址类型为FP。调用emit_method_begin方法，调用expr的code方法，调用emit_method_end方法，最后退出作
+          用域。你可能会疑惑，什么时候产生的将参数推入栈中的代码的呢？看下面
+          
+        - assign：产生表达式的代码，查询name的偏移量，然后根据寻址类型修改其值
+        
+        - dispatch：和static dispatch差不多，故只是最后提一下二者区别。首先产生所有形参代码，将结果入栈，看到不，入栈是caller的职责，不是callee的职责。然后产生调用者expr
+          表达式的代码。生成新label，novoid，对表达式进行非空判断，实际上就是判断是否非0，不为空则跳转到novoid，为空则参考traphandler代码，将文件名传入a0，行号传入t1，跳转
+          到dispatch_abort方法进行处理。接着就是产生novoid标签，上面是定义标签。只需通过self指针将方法表的指针传入t1，通过调用get_method_off方法查询此方法偏移量，获取此方
+          法指针在方法表位置，跳转到此位置即可。而static dispatch和它的唯一区别就是方法表的查询。可改成直接将此类的方法表地址移入t1寄存器，再通过本类查询此方法偏移量，因为
+          本类和祖先类的相同方法偏移是一样的。上面的generate_one_dispatch_table方法已经保证过了
+        
+            * get_method_off：查询本类特定方法偏移量，首先判断是否是SELFTYPE，是则恢复类名，之后通过method_off表查询之
+          
+        - cond：首先调用pred的code方法，然后定义else和end的label。获取acc的attr值，判断是否为0，为0跳转到else的label。之后就是调用then的code方法，然后跳转到end。之后生成
+          else的label。调用else表达式的code方法。最后生成end的label
+        
+        - case：
+        
+        - let：判断init的类型是否为空，不为空则执行init的code方法，为空则判断是否是三大基本类，是则将其protobj地址加入到a0（根据copy的调用规范），然后调用Object.copy方法，
+               然后调用init方法，因为三大类没有初始化则使用默认初始化。然后进入作用域，将a0入栈，之后将a0，即刚刚let新建的局部变量值加入sym_tbl表中，调用push_new_var方法给
+               出此局部变量在栈中相对fp的偏移量。调用body的code方法，最后退出作用域。
+        
+        - eq: 此方法对于三大基本类则调用equality_test，否则只是单纯比较指针是否相等
+        
+        - new：首先判断是否是selftype，不是则直接获取selftype的protobj，加载到a0，然后跳转到Object.copy。最后调用init方法，否则获取本类的classtag，再获取objtbl地址，通过
+               此二者值获取需要的protobj。加载入a0，然后跳转到Object.copy。最后调用init方法。
+        
+        - iscoid: 只需判断是否为0即可
+        
+        - object：若name为self，则直接将self加载入a0，否则查询那么偏移量，通过偏移量获取其值返回
+          
+          
+        
+         
+
+
           
           
         
