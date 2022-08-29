@@ -156,19 +156,19 @@ perl pa2-grading.pl
 
 生成语法分析树的过程，自顶向下的图大概是（主要关注层级关系）
 
-       program
-          |
-       classes
-    /.....|.......\
-class1  class2  class3
-............      |
-                features
-            /.....|.......\
-        method1.........attr1.......
-           |            
-  formals...exps    
-              |
-         branchs.....let......exp
+                                       program
+                                          |
+                                       classes
+                                    /.....|.......\
+                                class1  class2  class3
+                                ............      |
+                                                features
+                                            /.....|.......\
+                                        method1.........attr1...
+                                           |            
+                                  formals...exps    
+                                              |
+                                         branchs.....let......exp
          
 其余注意调用相关函数生成语法分析树即可。
 
