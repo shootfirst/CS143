@@ -450,17 +450,6 @@ void class__class::gather_attribute(Env env){
     }
 }
 
-
-Feature class__class::get_method(Symbol name) {
-    for (int i = features->first(); features->more(i); i = features->next(i)){
-        if ((features->nth(i)->is_method()) && (features->nth(i)->get_name() == name)){
-            return features->nth(i);
-        }
-    }
-
-    return NULL;
-}
-
 // method_class do nothing
 void method_class::add_to_env(Env env){
 
@@ -474,6 +463,19 @@ void attr_class::add_to_env(Env env){
         env.ct->semant_error(env.cur_class) << "Can't be defined multiple times!" << endl;
     }
 }
+
+
+Feature class__class::get_method(Symbol name) {
+    for (int i = features->first(); features->more(i); i = features->next(i)){
+        if ((features->nth(i)->is_method()) && (features->nth(i)->get_name() == name)){
+            return features->nth(i);
+        }
+    }
+
+    return NULL;
+}
+
+
 ///////////////////////////////////////////////////////////////////
 //type_check start
 //////////////////////////////////////////////////////////////////
