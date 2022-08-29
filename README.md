@@ -218,7 +218,7 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
 
 + 首先调用initialize_constants()，将所有关键字加入idtable中，以免出现变量名为关键字情况。
 
-+其次semant方法中，实验给的代码调用了ClassTable的构造函数，传入的参数则是包括除了所有非基本类的所有类的链表classes。所以，我们必须在构造方法中将所有类加入到table中。
++ 其次semant方法中，实验给的代码调用了ClassTable的构造函数，传入的参数则是包括除了所有非基本类的所有类的链表classes。所以，我们必须在构造方法中将所有类加入到table中。
 
     * 在构造方法中，首先会调用基本类的初始化install_basic_classes()，此方法应该修改，方法最后调用调用add_class_to_classtable()，将5个基本类加入table。
 
