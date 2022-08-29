@@ -487,6 +487,34 @@ Class_ class__class::type_check(Env env){
     return this;
 }
 
+Feature attr_class::type_check(Env env){
+   
+    env.om->enterscope();
+   
+    Symbol cur_class = env.cur_class->get_name();
+    env.om->addid(self, &cur_class);
+    
+    Symbol true_return_type = init->type_check(env)->type;
+    
+    if (name == self){
+        env.ct->semant_error(env.cur_class->get_filename(), this) << "Attr shouldn't be self!" << endl;
+    }
+    
+    if (true_return_type != No_type){
+        if (true_return_type == SELF_TYPE){
+            true_return_type = env.cur_class->get_name();
+        }
+        if (!(env.ct->is_sub_class(true_return_type, type_decl))){
+            env.ct->semant_error(env.cur_class) << "True attr type isn't subcalss of type_decl!" << endl;
+        }
+    }
+
+    env.om->exitscope();
+
+    return this;
+}
+
+
 Feature method_class::type_check(Env env){
     
     env.om->enterscope();
@@ -525,33 +553,6 @@ Feature method_class::type_check(Env env){
     }
     
     
-    env.om->exitscope();
-
-    return this;
-}
-
-Feature attr_class::type_check(Env env){
-   
-    env.om->enterscope();
-   
-    Symbol cur_class = env.cur_class->get_name();
-    env.om->addid(self, &cur_class);
-    
-    Symbol true_return_type = init->type_check(env)->type;
-    
-    if (name == self){
-        env.ct->semant_error(env.cur_class->get_filename(), this) << "Attr shouldn't be self!" << endl;
-    }
-    
-    if (true_return_type != No_type){
-        if (true_return_type == SELF_TYPE){
-            true_return_type = env.cur_class->get_name();
-        }
-        if (!(env.ct->is_sub_class(true_return_type, type_decl))){
-            env.ct->semant_error(env.cur_class) << "True attr type isn't subcalss of type_decl!" << endl;
-        }
-    }
-
     env.om->exitscope();
 
     return this;
