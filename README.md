@@ -183,11 +183,11 @@ include/cool-tree.cc，会有不同类型的节点继承tree_node。我们可以
 
 首先说明一下需要仔细阅读的材料：
 
-    - PA4.pdf
+- PA4.pdf
     
-    - cool-manual 第12章
+- cool-manual 第12章
     
-    - symtab.h与tree.h相关接口
+- symtab.h与tree.h相关接口
     
 主要需要修改的文件：cool-tree.h  semant.h  semant.cc
 
@@ -201,8 +201,6 @@ include/cool-tree.cc，会有不同类型的节点继承tree_node。我们可以
 实验要求：输入没有type的ast，输出有type的ast。即每个表达式都要有type的标记，同时还有检查是否有错误。原文：The semantic phaseshould correctly annotate ASTs with types and 
 should work correctly with the coolc code generator.
 
-说一下SELF_TYPE能及不能出现的地方：
-
 错误的处理：PA4.pdf原文：You are expected to recoverfrom all errors except for ill-formed class hierarchies.故若第一次遍历出错，则直接结束语法制导翻译。其他错误则抛开此
 小错误，从下一个继续开始。
 
@@ -212,14 +210,15 @@ should work correctly with the coolc code generator.
 
 关键数据结构2：Envmt（第二次遍历想到）
 
-SymbolTable是符号表，定义在symtab.h，存储标识符的名称和类别，这是它的关键接口：enterscope()、exitscope()、addid(SYM s, DAT *i)、lookup(SYM s)、probe(SYM s)，一个
+SymbolTable是符号表，定义在symtab.h，存储标识符的名称和类别，这是它的关键接口：enterscope()、exitscope()、addid(SYM s, DAT *i)、lookup(SYM s)、probe(SYM s)，它一个
 ClassTable，以及current_class构成了环境。
 
 
 program_class类的semant方法是语法制导翻译的入口，是语法制导翻译的核心代码，以下所有都围绕此方法展开。
 
++ 首先调用initialize_constants()，将所有关键字加入idtable中，以免出现变量名为关键字情况。
 
-+ 首先semant方法中，实验给的代码调用了ClassTable的构造函数，传入的参数则是包括除了所有非基本类的所有类的链表classes。所以，我们必须在构造方法中将所有类加入到table中。
++其次semant方法中，实验给的代码调用了ClassTable的构造函数，传入的参数则是包括除了所有非基本类的所有类的链表classes。所以，我们必须在构造方法中将所有类加入到table中。
 
     * 在构造方法中，首先会调用基本类的初始化install_basic_classes()，此方法应该修改，方法最后调用调用add_class_to_classtable()，将5个基本类加入table。
 
@@ -228,7 +227,7 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
         - add_class_to_classtable()中，主要是对加入时的类进行一次检查，此次检查主要是三个判断：类名不能是SELF_TYPE；不能继承Str、Bool和Int三个基本类；类不能重复定义。
           PA4.pdf提到过：In addition, Cool has restrictions on inheriting from the basic classes (see the manual). It is also an error if class A inherits from class B 
           but class B is not defined. 为什么在这里对这三个进行检查，是因为这三个检查成本低，在加入时即可检查，而且检查条件不像检查继承图是否无环那样需要所有类都加入后才能
-          检查。在满足上述三个条件后，将此class加入inherit_map和class_map中。若检查出错，则不能加入到table，注意我们的一开始写的错误检查原则。
+          检查。在满足上述三个条件后，将此class加入inherit_map和class_map中。若检查出错，则不能加入到table，注意我们的一开始写的错误检查原则。使用semant_error记录错误。
 
 + 然后开始第一次遍历ast，主要是检查是否无环、是否未定义Main类，是否继承的类未被定义，这三个检查必须是所有类都被加入继承图，才能检查。可以通过一次遍历完成所有检查。
     
@@ -281,11 +280,32 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
     * method的type_check和attribute的都包括对expression的type_check，这是主角，还有对formal的check，以下先介绍formal的check
         
     * 对formal的type_check，将其加入当前envmt,若重复定义，则报错
+
+    * 对branch的type_check，直接添加name和type
         
     * expression的type_check，参考cs143课程或者cool-manual 第12章。注意到我们的主要目标就是给ast注释上type，这是expression的type_check()的功能之一。遇到错误类型表达 
-      式，cs143课程提供一个解决方案：将类型Object分配给错误类型的表达式。
+      式，cs143课程提供一个解决方案：将类型Object分配给错误类型的表达式。下面是部分较难expression子类型的typecheck
+      
+        - assign_class 只需检查声明类型是否是表达式返回类型祖先类即可
+        
+        - static_dispatch_class 祖先类方法调用，首先判断是否满足祖先关系，然后检验实参类型和形参类型是否满足祖先关系，最后将type字段赋值为方法的返回值类型。
+        
+        - dispatch_class 方法调用，同上，只是缺少第一个
+        
+        - cond_class if语句，检验判断条件是否为bool类型，然后取if语句和else语句两表达式类型公共祖先为type
+        
+        - loop_class while语句，检验判断条件是否为bool类型，type为object
+        
+        - typcase_class 首先case语句各类型应该不一样，然后对各case语句取公共祖先，注意环境的改变与恢复
+        
+        - let_class 判断是否有表达式赋值，没有则直接改变环境对子表达式进行检查，type值也为子表达式类型，有则对赋值返回类型与声明类型进行检查是否具有祖先关系
+        
+        - object_class 判断是否是self，是则返回，否则在当前环境查询，若不存在则报错
           
 ### 语义分析 semantic analysis
+
+我们可以看到，语义分析侧重语义检查，以语法分析生成的ast作为输入，进行一系列诸如类继承图检查，方法类型检查等等，同时进行表达式类型检查，为原来的ast的表达式节点添加type字段，
+以经过检查的ast作为输出。
           
 ## PA5
 
