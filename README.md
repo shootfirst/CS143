@@ -318,11 +318,11 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
 
 首先说明一下需要仔细阅读的材料：
 
-    - PA5.pdf
+- PA5.pdf
     
-    - cool-runtime 
+- cool-runtime 
     
-    - cool-manual 第13章
+- cool-manual 第13章
     
 主要需要修改的文件：cgen.h  cgen.cc
 
