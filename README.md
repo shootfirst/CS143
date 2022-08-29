@@ -456,8 +456,8 @@ enum class BASE_LOC_TYPE {
 
 寻址类型：
     
-+ SELF。靠self寻址，主要是类的属性、方法表、classtag等
-+ FP。靠FP寻址，主要是实参、局部变量
++ SELF，靠self寻址，主要是类的属性、方法表、classtag等
++ FP，靠FP寻址，主要是实参、局部变量
 
 
 代码思路：
@@ -504,7 +504,7 @@ program class::cgen(ostream&)方法是代码生成的入口，在里面调用Cge
     
     - class_method：生成所有类的所有方法代码。遍历所有类，若是五大基本类，则继续。设置当前类，否则进入作用域，对attr_off中当前类所有属性，全部加入到sym_tbl中，寻址类型
       为self指针，偏移量为attr_off+3，同上。对于当前类所有方法，首先调用emit_method_ref生成引用，加上label，然后调用method类的code方法生成其mips代码。最后退出当前作用
-      。域
+      域
     
 + 下面介绍各个类的code方法，主要介绍attr、method、assign、dispatch、cond、case、let、eq、new、isvoid和object的code方法
     
