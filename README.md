@@ -527,20 +527,22 @@ program class::cgen(ostream&)方法是代码生成的入口，在里面调用Cge
     - cond：首先调用pred的code方法，然后定义else和end的label。获取acc的attr值，判断是否为0，为0跳转到else的label。之后就是调用then的code方法，然后跳转到end。之后生成
       else的label。调用else表达式的code方法。最后生成end的label
     
-    - case：
+    - case：我们首先需要判断ACC是否为空，为空我们则直接准备相关参数，跳转到Abort，否则接下来按类型在继承树上的位置排好序，按深度降序排列，这样，深度越靠底部的类，越优先
+      被匹配。使用for循环生成所有类的匹配代码，若在当前类的subclass_idrang中，我们跳转到匹配成功的地方。
+             
     
     - let：判断init的类型是否为空，不为空则执行init的code方法，为空则判断是否是三大基本类，是则将其protobj地址加入到a0（根据copy的调用规范），然后调用Object.copy方法，
-           然后调用init方法，因为三大类没有初始化则使用默认初始化。然后进入作用域，将a0入栈，之后将a0，即刚刚let新建的局部变量值加入sym_tbl表中，调用push_new_var方法给
-           出此局部变量在栈中相对fp的偏移量。调用body的code方法，最后退出作用域。
+      然后调用init方法，因为三大类没有初始化则使用默认初始化。然后进入作用域，将a0入栈，之后将a0，即刚刚let新建的局部变量值加入sym_tbl表中，调用push_new_var方法给
+      出此局部变量在栈中相对fp的偏移量。调用body的code方法，最后退出作用域。
     
     - eq: 此方法对于三大基本类则调用equality_test，否则只是单纯比较指针是否相等
     
     - new：首先判断是否是selftype，不是则直接获取selftype的protobj，加载到a0，然后跳转到Object.copy。最后调用init方法，否则获取本类的classtag，再获取objtbl地址，通过
-           此二者值获取需要的protobj。加载入a0，然后跳转到Object.copy。最后调用init方法。
+      此二者值获取需要的protobj。加载入a0，然后跳转到Object.copy。最后调用init方法。
     
     - iscoid: 只需判断是否为0即可
     
-    - object：若name为self，则直接将self加载入a0，否则查询那么偏移量，通过偏移量获取其值返回
+    - object：若name为self，则直接将self加载入a0，否则查询偏移量，通过偏移量获取其值返回
     
 ### 汇编代码生成 code generation
 
