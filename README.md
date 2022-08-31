@@ -543,6 +543,8 @@ program class::cgen(ostream&)方法是代码生成的入口，在里面调用Cge
     - iscoid: 只需判断是否为0即可
     
     - object：若name为self，则直接将self加载入a0，否则查询偏移量，通过偏移量获取其值返回
+
+    - 加减乘除：对于加减乘除，我们只需明白，每个操控的变量都是Int对象，我们需要操控的值在对象偏移量为3（从0开始）的位置处即可
     
 ### 汇编代码生成 code generation
 
