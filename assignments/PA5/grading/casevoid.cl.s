@@ -1,3 +1,4 @@
+# start of generated code
 	.data
 	.align	2
 	.globl	class_nameTab
@@ -25,7 +26,7 @@ _MemMgr_COLLECTOR:
 _MemMgr_TEST:
 	.word	0
 	.word	-1
-str_const8:
+str_const11:
 	.word	4
 	.word	5
 	.word	String_dispTab
@@ -33,7 +34,7 @@ str_const8:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const7:
+str_const10:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -42,7 +43,7 @@ str_const7:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const6:
+str_const9:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -51,7 +52,7 @@ str_const6:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const5:
+str_const8:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -60,7 +61,7 @@ str_const5:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const4:
+str_const7:
 	.word	4
 	.word	5
 	.word	String_dispTab
@@ -69,7 +70,7 @@ str_const4:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const3:
+str_const6:
 	.word	4
 	.word	5
 	.word	String_dispTab
@@ -78,7 +79,7 @@ str_const3:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const2:
+str_const5:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -87,35 +88,68 @@ str_const2:
 	.byte	0	
 	.align	2
 	.word	-1
+str_const4:
+	.word	4
+	.word	7
+	.word	String_dispTab
+	.word	int_const5
+	.ascii	"_prim_slot"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const3:
+	.word	4
+	.word	7
+	.word	String_dispTab
+	.word	int_const6
+	.ascii	"SELF_TYPE"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const2:
+	.word	4
+	.word	7
+	.word	String_dispTab
+	.word	int_const6
+	.ascii	"_no_class"
+	.byte	0	
+	.align	2
+	.word	-1
 str_const1:
 	.word	4
 	.word	8
 	.word	String_dispTab
-	.word	int_const5
+	.word	int_const7
 	.ascii	"<basic class>"
 	.byte	0	
 	.align	2
 	.word	-1
 str_const0:
 	.word	4
-	.word	15
+	.word	8
 	.word	String_dispTab
-	.word	int_const6
-	.ascii	"/usr/class/cs143/tests/fa05/PA5/casevoid.cl"
+	.word	int_const7
+	.ascii	"./casevoid.cl"
 	.byte	0	
 	.align	2
+	.word	-1
+int_const7:
+	.word	2
+	.word	4
+	.word	Int_dispTab
+	.word	13
 	.word	-1
 int_const6:
 	.word	2
 	.word	4
 	.word	Int_dispTab
-	.word	43
+	.word	9
 	.word	-1
 int_const5:
 	.word	2
 	.word	4
 	.word	Int_dispTab
-	.word	13
+	.word	10
 	.word	-1
 int_const4:
 	.word	2
@@ -159,12 +193,12 @@ bool_const1:
 	.word	Bool_dispTab
 	.word	1
 class_nameTab:
-	.word	str_const2
-	.word	str_const3
-	.word	str_const4
 	.word	str_const5
 	.word	str_const6
 	.word	str_const7
+	.word	str_const8
+	.word	str_const9
+	.word	str_const10
 class_objTab:
 	.word	Object_protObj
 	.word	Object_init
@@ -178,10 +212,6 @@ class_objTab:
 	.word	String_init
 	.word	Main_protObj
 	.word	Main_init
-Object_dispTab:
-	.word	Object.abort
-	.word	Object.type_name
-	.word	Object.copy
 Main_dispTab:
 	.word	Object.abort
 	.word	Object.type_name
@@ -210,11 +240,10 @@ IO_dispTab:
 	.word	IO.out_int
 	.word	IO.in_string
 	.word	IO.in_int
-	.word	-1
-Object_protObj:
-	.word	0
-	.word	3
-	.word	Object_dispTab
+Object_dispTab:
+	.word	Object.abort
+	.word	Object.type_name
+	.word	Object.copy
 	.word	-1
 Main_protObj:
 	.word	5
@@ -227,7 +256,7 @@ String_protObj:
 	.word	5
 	.word	String_dispTab
 	.word	int_const0
-	.word	0
+	.byte	0	
 	.word	-1
 Bool_protObj:
 	.word	3
@@ -245,6 +274,11 @@ IO_protObj:
 	.word	1
 	.word	3
 	.word	IO_dispTab
+	.word	-1
+Object_protObj:
+	.word	0
+	.word	3
+	.word	Object_dispTab
 	.globl	heap_start
 heap_start:
 	.word	0
@@ -254,115 +288,161 @@ heap_start:
 	.globl	String_init
 	.globl	Bool_init
 	.globl	Main.main
-Object_init:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	move	$a0 $s0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
 Main_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 String_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Bool_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Int_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 IO_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+Object_init:
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Main.main:
-	addiu	$sp $sp -16
-	sw	$fp 16($sp)
-	sw	$s0 12($sp)
-	sw	$ra 8($sp)
-	addiu	$fp $sp 4
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	sw	$s1 0($fp)
+	# here we use self as pointer
 	lw	$a0 12($s0)
+	# void expression, we call abort
 	bne	$a0 $zero label1
 	la	$a0 str_const0
 	li	$t1 3
 	jal	_case_abort2
 label1:
-	lw	$t2 0($a0)
-	blt	$t2 5 label2
-	bgt	$t2 5 label2
-	move	$s1 $a0
+	lw	$t1 0($a0)
+	# check if match
+	blt	$t1 5 label3
+	bgt	$t1 5 label3
+	# new scope
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
 	la	$a0 int_const0
+	addiu	$sp $sp 4
+	# exit new scope
+	# if we fit, we get to the end
 	b	label0
+	# we do not fit it, so generate next lable
+label3:
+	# we do not match, we call abort
 label2:
 	jal	_case_abort
+	# successfully match !
 label0:
-	lw	$s1 0($fp)
-	lw	$fp 16($sp)
-	lw	$s0 12($sp)
-	lw	$ra 8($sp)
-	addiu	$sp $sp 16
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
 	jr	$ra	
+
+# end of generated code

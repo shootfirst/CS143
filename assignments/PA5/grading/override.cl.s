@@ -1,3 +1,4 @@
+# start of generated code
 	.data
 	.align	2
 	.globl	class_nameTab
@@ -25,7 +26,7 @@ _MemMgr_COLLECTOR:
 _MemMgr_TEST:
 	.word	0
 	.word	-1
-str_const13:
+str_const16:
 	.word	5
 	.word	5
 	.word	String_dispTab
@@ -33,70 +34,7 @@ str_const13:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const12:
-	.word	5
-	.word	5
-	.word	String_dispTab
-	.word	int_const0
-	.ascii	"D"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const11:
-	.word	5
-	.word	5
-	.word	String_dispTab
-	.word	int_const0
-	.ascii	"C"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const10:
-	.word	5
-	.word	5
-	.word	String_dispTab
-	.word	int_const0
-	.ascii	"B"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const9:
-	.word	5
-	.word	5
-	.word	String_dispTab
-	.word	int_const0
-	.ascii	"A"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const8:
-	.word	5
-	.word	6
-	.word	String_dispTab
-	.word	int_const5
-	.ascii	"String"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const7:
-	.word	5
-	.word	6
-	.word	String_dispTab
-	.word	int_const3
-	.ascii	"Bool"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const6:
-	.word	5
-	.word	5
-	.word	String_dispTab
-	.word	int_const2
-	.ascii	"Int"
-	.byte	0	
-	.align	2
-	.word	-1
-str_const5:
+str_const15:
 	.word	5
 	.word	6
 	.word	String_dispTab
@@ -105,7 +43,70 @@ str_const5:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const4:
+str_const14:
+	.word	5
+	.word	5
+	.word	String_dispTab
+	.word	int_const0
+	.ascii	"D"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const13:
+	.word	5
+	.word	5
+	.word	String_dispTab
+	.word	int_const0
+	.ascii	"C"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const12:
+	.word	5
+	.word	5
+	.word	String_dispTab
+	.word	int_const0
+	.ascii	"B"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const11:
+	.word	5
+	.word	5
+	.word	String_dispTab
+	.word	int_const0
+	.ascii	"A"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const10:
+	.word	5
+	.word	6
+	.word	String_dispTab
+	.word	int_const5
+	.ascii	"String"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const9:
+	.word	5
+	.word	6
+	.word	String_dispTab
+	.word	int_const3
+	.ascii	"Bool"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const8:
+	.word	5
+	.word	5
+	.word	String_dispTab
+	.word	int_const2
+	.ascii	"Int"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const7:
 	.word	5
 	.word	5
 	.word	String_dispTab
@@ -114,7 +115,7 @@ str_const4:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const3:
+str_const6:
 	.word	5
 	.word	6
 	.word	String_dispTab
@@ -123,11 +124,38 @@ str_const3:
 	.byte	0	
 	.align	2
 	.word	-1
+str_const5:
+	.word	5
+	.word	7
+	.word	String_dispTab
+	.word	int_const7
+	.ascii	"_prim_slot"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const4:
+	.word	5
+	.word	7
+	.word	String_dispTab
+	.word	int_const8
+	.ascii	"SELF_TYPE"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const3:
+	.word	5
+	.word	7
+	.word	String_dispTab
+	.word	int_const8
+	.ascii	"_no_class"
+	.byte	0	
+	.align	2
+	.word	-1
 str_const2:
 	.word	5
 	.word	8
 	.word	String_dispTab
-	.word	int_const7
+	.word	int_const9
 	.ascii	"<basic class>"
 	.byte	0	
 	.align	2
@@ -143,24 +171,30 @@ str_const1:
 	.word	-1
 str_const0:
 	.word	5
-	.word	15
+	.word	8
 	.word	String_dispTab
-	.word	int_const8
-	.ascii	"/usr/class/cs143/tests/fa05/PA5/override.cl"
+	.word	int_const9
+	.ascii	"./override.cl"
 	.byte	0	
 	.align	2
+	.word	-1
+int_const9:
+	.word	3
+	.word	4
+	.word	Int_dispTab
+	.word	13
 	.word	-1
 int_const8:
 	.word	3
 	.word	4
 	.word	Int_dispTab
-	.word	43
+	.word	9
 	.word	-1
 int_const7:
 	.word	3
 	.word	4
 	.word	Int_dispTab
-	.word	13
+	.word	10
 	.word	-1
 int_const6:
 	.word	3
@@ -216,16 +250,16 @@ bool_const1:
 	.word	Bool_dispTab
 	.word	1
 class_nameTab:
-	.word	str_const3
-	.word	str_const4
-	.word	str_const5
 	.word	str_const6
 	.word	str_const7
+	.word	str_const15
 	.word	str_const8
 	.word	str_const9
 	.word	str_const10
 	.word	str_const11
 	.word	str_const12
+	.word	str_const13
+	.word	str_const14
 class_objTab:
 	.word	Object_protObj
 	.word	Object_init
@@ -247,34 +281,39 @@ class_objTab:
 	.word	C_init
 	.word	D_protObj
 	.word	D_init
-Object_dispTab:
+Main_dispTab:
 	.word	Object.abort
 	.word	Object.type_name
 	.word	Object.copy
-A_dispTab:
-	.word	Object.abort
-	.word	Object.type_name
-	.word	Object.copy
-	.word	A.f
-	.word	A.g
-B_dispTab:
-	.word	Object.abort
-	.word	Object.type_name
-	.word	Object.copy
-	.word	A.f
-	.word	B.g
-C_dispTab:
-	.word	Object.abort
-	.word	Object.type_name
-	.word	Object.copy
-	.word	C.f
-	.word	B.g
+	.word	IO.out_string
+	.word	IO.out_int
+	.word	IO.in_string
+	.word	IO.in_int
+	.word	Main.main
 D_dispTab:
 	.word	Object.abort
 	.word	Object.type_name
 	.word	Object.copy
 	.word	D.f
 	.word	D.g
+C_dispTab:
+	.word	Object.abort
+	.word	Object.type_name
+	.word	Object.copy
+	.word	C.f
+	.word	B.g
+B_dispTab:
+	.word	Object.abort
+	.word	Object.type_name
+	.word	Object.copy
+	.word	A.f
+	.word	B.g
+A_dispTab:
+	.word	Object.abort
+	.word	Object.type_name
+	.word	Object.copy
+	.word	A.f
+	.word	A.g
 String_dispTab:
 	.word	Object.abort
 	.word	Object.type_name
@@ -298,47 +337,46 @@ IO_dispTab:
 	.word	IO.out_int
 	.word	IO.in_string
 	.word	IO.in_int
-Main_dispTab:
+Object_dispTab:
 	.word	Object.abort
 	.word	Object.type_name
 	.word	Object.copy
-	.word	IO.out_string
-	.word	IO.out_int
-	.word	IO.in_string
-	.word	IO.in_int
-	.word	Main.main
 	.word	-1
-Object_protObj:
-	.word	0
-	.word	3
-	.word	Object_dispTab
-	.word	-1
-A_protObj:
-	.word	6
-	.word	3
-	.word	A_dispTab
-	.word	-1
-B_protObj:
+Main_protObj:
+	.word	2
 	.word	7
-	.word	3
-	.word	B_dispTab
-	.word	-1
-C_protObj:
-	.word	8
-	.word	3
-	.word	C_dispTab
+	.word	Main_dispTab
+	.word	0
+	.word	0
+	.word	0
+	.word	0
 	.word	-1
 D_protObj:
 	.word	9
 	.word	3
 	.word	D_dispTab
 	.word	-1
+C_protObj:
+	.word	8
+	.word	3
+	.word	C_dispTab
+	.word	-1
+B_protObj:
+	.word	7
+	.word	3
+	.word	B_dispTab
+	.word	-1
+A_protObj:
+	.word	6
+	.word	3
+	.word	A_dispTab
+	.word	-1
 String_protObj:
 	.word	5
 	.word	5
 	.word	String_dispTab
 	.word	int_const6
-	.word	0
+	.byte	0	
 	.word	-1
 Bool_protObj:
 	.word	4
@@ -357,14 +395,10 @@ IO_protObj:
 	.word	3
 	.word	IO_dispTab
 	.word	-1
-Main_protObj:
-	.word	2
-	.word	7
-	.word	Main_dispTab
+Object_protObj:
 	.word	0
-	.word	0
-	.word	0
-	.word	0
+	.word	3
+	.word	Object_dispTab
 	.globl	heap_start
 heap_start:
 	.word	0
@@ -374,246 +408,232 @@ heap_start:
 	.globl	String_init
 	.globl	Bool_init
 	.globl	Main.main
-Object_init:
+Main_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
 	move	$a0 $s0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-A_init:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	jal	IO_init
 	move	$s0 $a0
-	jal	Object_init
-	move	$a0 $s0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-B_init:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
+	la	$a0 A_protObj
+	jal	Object.copy
 	jal	A_init
+	# assign init value to the offset of self
+	sw	$a0 12($s0)
 	move	$a0 $s0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-C_init:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
+	la	$a0 B_protObj
+	jal	Object.copy
 	jal	B_init
+	# assign init value to the offset of self
+	sw	$a0 16($s0)
 	move	$a0 $s0
+	la	$a0 C_protObj
+	jal	Object.copy
+	jal	C_init
+	# assign init value to the offset of self
+	sw	$a0 20($s0)
+	move	$a0 $s0
+	la	$a0 D_protObj
+	jal	Object.copy
+	jal	D_init
+	# assign init value to the offset of self
+	sw	$a0 24($s0)
+	move	$a0 $s0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 D_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	C_init
 	move	$a0 $s0
+	jal	C_init
+	move	$s0 $a0
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+C_init:
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	move	$a0 $s0
+	jal	B_init
+	move	$s0 $a0
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+B_init:
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	move	$a0 $s0
+	jal	A_init
+	move	$s0 $a0
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+A_init:
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 String_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Bool_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Int_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 IO_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
+	move	$a0 $s0
 	jal	Object_init
-	move	$a0 $s0
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
-Main_init:
+Object_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	IO_init
-	la	$a0 A_protObj
-	jal	Object.copy
-	jal	A_init
-	sw	$a0 12($s0)
-	la	$a0 B_protObj
-	jal	Object.copy
-	jal	B_init
-	sw	$a0 16($s0)
-	la	$a0 C_protObj
-	jal	Object.copy
-	jal	C_init
-	sw	$a0 20($s0)
-	la	$a0 D_protObj
-	jal	Object.copy
-	jal	D_init
-	sw	$a0 24($s0)
-	move	$a0 $s0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-A.f:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	la	$a0 int_const0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-A.g:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	la	$a0 int_const1
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-B.g:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	la	$a0 int_const2
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-C.f:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	la	$a0 int_const3
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-D.f:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	la	$a0 int_const4
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
-D.g:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	la	$a0 int_const5
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Main.main:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 12($s0)
 	bne	$a0 $zero label0
 	la	$a0 str_const0
@@ -625,6 +645,7 @@ label0:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label1
 	la	$a0 str_const0
@@ -634,6 +655,9 @@ label1:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 12($s0)
 	bne	$a0 $zero label2
 	la	$a0 str_const0
@@ -645,6 +669,7 @@ label2:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label3
 	la	$a0 str_const0
@@ -654,6 +679,9 @@ label3:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 16($s0)
 	bne	$a0 $zero label4
 	la	$a0 str_const0
@@ -665,6 +693,7 @@ label4:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label5
 	la	$a0 str_const0
@@ -674,6 +703,9 @@ label5:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 16($s0)
 	bne	$a0 $zero label6
 	la	$a0 str_const0
@@ -685,6 +717,7 @@ label6:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label7
 	la	$a0 str_const0
@@ -694,6 +727,9 @@ label7:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 20($s0)
 	bne	$a0 $zero label8
 	la	$a0 str_const0
@@ -705,6 +741,7 @@ label8:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label9
 	la	$a0 str_const0
@@ -714,6 +751,9 @@ label9:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 20($s0)
 	bne	$a0 $zero label10
 	la	$a0 str_const0
@@ -725,6 +765,7 @@ label10:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label11
 	la	$a0 str_const0
@@ -734,6 +775,9 @@ label11:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 24($s0)
 	bne	$a0 $zero label12
 	la	$a0 str_const0
@@ -745,6 +789,7 @@ label12:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label13
 	la	$a0 str_const0
@@ -754,6 +799,9 @@ label13:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 24($s0)
 	bne	$a0 $zero label14
 	la	$a0 str_const0
@@ -765,6 +813,7 @@ label14:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label15
 	la	$a0 str_const0
@@ -774,8 +823,13 @@ label15:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 12($s0)
+	# check if void
 	bne	$a0 $zero label16
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 33
 	jal	_dispatch_abort
@@ -785,6 +839,7 @@ label16:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label17
 	la	$a0 str_const0
@@ -794,8 +849,13 @@ label17:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 12($s0)
+	# check if void
 	bne	$a0 $zero label18
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 34
 	jal	_dispatch_abort
@@ -805,6 +865,7 @@ label18:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label19
 	la	$a0 str_const0
@@ -814,8 +875,13 @@ label19:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 16($s0)
+	# check if void
 	bne	$a0 $zero label20
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 35
 	jal	_dispatch_abort
@@ -825,6 +891,7 @@ label20:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label21
 	la	$a0 str_const0
@@ -834,8 +901,13 @@ label21:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 16($s0)
+	# check if void
 	bne	$a0 $zero label22
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 36
 	jal	_dispatch_abort
@@ -845,6 +917,7 @@ label22:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label23
 	la	$a0 str_const0
@@ -854,8 +927,13 @@ label23:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 20($s0)
+	# check if void
 	bne	$a0 $zero label24
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 37
 	jal	_dispatch_abort
@@ -865,6 +943,7 @@ label24:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label25
 	la	$a0 str_const0
@@ -874,8 +953,13 @@ label25:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 20($s0)
+	# check if void
 	bne	$a0 $zero label26
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 38
 	jal	_dispatch_abort
@@ -885,6 +969,7 @@ label26:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label27
 	la	$a0 str_const0
@@ -894,8 +979,13 @@ label27:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 24($s0)
+	# check if void
 	bne	$a0 $zero label28
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 39
 	jal	_dispatch_abort
@@ -905,6 +995,7 @@ label28:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label29
 	la	$a0 str_const0
@@ -914,8 +1005,13 @@ label29:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 24($s0)
+	# check if void
 	bne	$a0 $zero label30
+	# prepare arg to call abort
 	la	$a0 str_const0
 	li	$t1 40
 	jal	_dispatch_abort
@@ -925,6 +1021,7 @@ label30:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label31
 	la	$a0 str_const0
@@ -946,6 +1043,9 @@ label31:
 	jal	Object.copy
 	jal	D_init
 	sw	$a0 20($s0)
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 12($s0)
 	bne	$a0 $zero label32
 	la	$a0 str_const0
@@ -957,6 +1057,7 @@ label32:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label33
 	la	$a0 str_const0
@@ -966,6 +1067,9 @@ label33:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 12($s0)
 	bne	$a0 $zero label34
 	la	$a0 str_const0
@@ -977,6 +1081,7 @@ label34:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label35
 	la	$a0 str_const0
@@ -986,6 +1091,9 @@ label35:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 16($s0)
 	bne	$a0 $zero label36
 	la	$a0 str_const0
@@ -997,6 +1105,7 @@ label36:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label37
 	la	$a0 str_const0
@@ -1006,6 +1115,9 @@ label37:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 16($s0)
 	bne	$a0 $zero label38
 	la	$a0 str_const0
@@ -1017,6 +1129,7 @@ label38:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label39
 	la	$a0 str_const0
@@ -1026,6 +1139,9 @@ label39:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 20($s0)
 	bne	$a0 $zero label40
 	la	$a0 str_const0
@@ -1037,6 +1153,7 @@ label40:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label41
 	la	$a0 str_const0
@@ -1046,6 +1163,9 @@ label41:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
+	# push args
+	# here we use self as pointer
 	lw	$a0 20($s0)
 	bne	$a0 $zero label42
 	la	$a0 str_const0
@@ -1057,6 +1177,7 @@ label42:
 	jalr		$t1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label43
 	la	$a0 str_const0
@@ -1066,9 +1187,11 @@ label43:
 	lw	$t1 8($a0)
 	lw	$t1 16($t1)
 	jalr		$t1
+	# push args
 	la	$a0 str_const1
 	sw	$a0 0($sp)
 	addiu	$sp $sp -4
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label44
 	la	$a0 str_const0
@@ -1078,8 +1201,125 @@ label44:
 	lw	$t1 8($a0)
 	lw	$t1 12($t1)
 	jalr		$t1
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
+D.f:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	la	$a0 int_const4
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+D.g:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	la	$a0 int_const5
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+C.f:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	la	$a0 int_const3
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+B.g:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	la	$a0 int_const2
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+A.f:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	la	$a0 int_const0
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+A.g:
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	la	$a0 int_const1
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+
+# end of generated code

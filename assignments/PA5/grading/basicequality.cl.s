@@ -1,3 +1,4 @@
+# start of generated code
 	.data
 	.align	2
 	.globl	class_nameTab
@@ -25,7 +26,7 @@ _MemMgr_COLLECTOR:
 _MemMgr_TEST:
 	.word	0
 	.word	-1
-str_const9:
+str_const12:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -34,7 +35,7 @@ str_const9:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const8:
+str_const11:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -43,7 +44,7 @@ str_const8:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const7:
+str_const10:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -52,7 +53,7 @@ str_const7:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const6:
+str_const9:
 	.word	4
 	.word	5
 	.word	String_dispTab
@@ -61,7 +62,7 @@ str_const6:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const5:
+str_const8:
 	.word	4
 	.word	5
 	.word	String_dispTab
@@ -70,7 +71,7 @@ str_const5:
 	.byte	0	
 	.align	2
 	.word	-1
-str_const4:
+str_const7:
 	.word	4
 	.word	6
 	.word	String_dispTab
@@ -79,11 +80,38 @@ str_const4:
 	.byte	0	
 	.align	2
 	.word	-1
+str_const6:
+	.word	4
+	.word	7
+	.word	String_dispTab
+	.word	int_const7
+	.ascii	"_prim_slot"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const5:
+	.word	4
+	.word	7
+	.word	String_dispTab
+	.word	int_const8
+	.ascii	"SELF_TYPE"
+	.byte	0	
+	.align	2
+	.word	-1
+str_const4:
+	.word	4
+	.word	7
+	.word	String_dispTab
+	.word	int_const8
+	.ascii	"_no_class"
+	.byte	0	
+	.align	2
+	.word	-1
 str_const3:
 	.word	4
 	.word	8
 	.word	String_dispTab
-	.word	int_const7
+	.word	int_const9
 	.ascii	"<basic class>"
 	.byte	0	
 	.align	2
@@ -107,24 +135,36 @@ str_const1:
 	.word	-1
 str_const0:
 	.word	4
-	.word	17
+	.word	9
 	.word	String_dispTab
-	.word	int_const8
-	.ascii	"/usr/class/cs143/tests/fa05/PA5/basicequality.cl"
+	.word	int_const10
+	.ascii	"./basicequality.cl"
 	.byte	0	
 	.align	2
+	.word	-1
+int_const10:
+	.word	2
+	.word	4
+	.word	Int_dispTab
+	.word	18
+	.word	-1
+int_const9:
+	.word	2
+	.word	4
+	.word	Int_dispTab
+	.word	13
 	.word	-1
 int_const8:
 	.word	2
 	.word	4
 	.word	Int_dispTab
-	.word	48
+	.word	9
 	.word	-1
 int_const7:
 	.word	2
 	.word	4
 	.word	Int_dispTab
-	.word	13
+	.word	10
 	.word	-1
 int_const6:
 	.word	2
@@ -180,12 +220,12 @@ bool_const1:
 	.word	Bool_dispTab
 	.word	1
 class_nameTab:
-	.word	str_const4
-	.word	str_const5
-	.word	str_const6
 	.word	str_const7
 	.word	str_const8
 	.word	str_const9
+	.word	str_const10
+	.word	str_const11
+	.word	str_const12
 class_objTab:
 	.word	Object_protObj
 	.word	Object_init
@@ -199,10 +239,6 @@ class_objTab:
 	.word	String_init
 	.word	Main_protObj
 	.word	Main_init
-Object_dispTab:
-	.word	Object.abort
-	.word	Object.type_name
-	.word	Object.copy
 Main_dispTab:
 	.word	Object.abort
 	.word	Object.type_name
@@ -231,11 +267,10 @@ IO_dispTab:
 	.word	IO.out_int
 	.word	IO.in_string
 	.word	IO.in_int
-	.word	-1
-Object_protObj:
-	.word	0
-	.word	3
-	.word	Object_dispTab
+Object_dispTab:
+	.word	Object.abort
+	.word	Object.type_name
+	.word	Object.copy
 	.word	-1
 Main_protObj:
 	.word	5
@@ -247,7 +282,7 @@ String_protObj:
 	.word	5
 	.word	String_dispTab
 	.word	int_const1
-	.word	0
+	.byte	0	
 	.word	-1
 Bool_protObj:
 	.word	3
@@ -265,6 +300,11 @@ IO_protObj:
 	.word	1
 	.word	3
 	.word	IO_dispTab
+	.word	-1
+Object_protObj:
+	.word	0
+	.word	3
+	.word	Object_dispTab
 	.globl	heap_start
 heap_start:
 	.word	0
@@ -274,108 +314,146 @@ heap_start:
 	.globl	String_init
 	.globl	Bool_init
 	.globl	Main.main
-Object_init:
-	addiu	$sp $sp -12
-	sw	$fp 12($sp)
-	sw	$s0 8($sp)
-	sw	$ra 4($sp)
-	addiu	$fp $sp 4
-	move	$s0 $a0
-	move	$a0 $s0
-	lw	$fp 12($sp)
-	lw	$s0 8($sp)
-	lw	$ra 4($sp)
-	addiu	$sp $sp 12
-	jr	$ra	
 Main_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 String_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Bool_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Int_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 IO_init:
+	# push fp, s0, ra
 	addiu	$sp $sp -12
 	sw	$fp 12($sp)
 	sw	$s0 8($sp)
 	sw	$ra 4($sp)
-	addiu	$fp $sp 4
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	jal	Object_init
 	move	$a0 $s0
+	jal	Object_init
+	move	$s0 $a0
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
+	jr	$ra	
+Object_init:
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
+	move	$s0 $a0
+	# restore register
 	lw	$fp 12($sp)
 	lw	$s0 8($sp)
 	lw	$ra 4($sp)
 	addiu	$sp $sp 12
 	jr	$ra	
 Main.main:
-	addiu	$sp $sp -20
-	sw	$fp 20($sp)
-	sw	$s0 16($sp)
-	sw	$ra 12($sp)
-	addiu	$fp $sp 4
+	# now we start generate method code
+	# add args
+	# push fp, s0, ra
+	addiu	$sp $sp -12
+	sw	$fp 12($sp)
+	sw	$s0 8($sp)
+	sw	$ra 4($sp)
+	# fp points to the return address
+	addiu	$fp $sp 12
+	# s0 is a0
 	move	$s0 $a0
-	sw	$s1 4($fp)
-	sw	$s2 0($fp)
-	la	$s2 bool_const1
-	la	$t2 bool_const0
-	move	$t1 $s2
 	la	$a0 bool_const1
-	beq	$t1 $t2 label2
+	# e1 we push, because if we store it in a register, it will be covered in e2 code method
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
+	la	$a0 bool_const0
+	# e2 in T2
+	move	$t2 $a0
+	# e1 in T1
+	lw	$t1 4($sp)
+	addiu	$sp $sp 4
+	la	$a0 bool_const1
 	la	$a1 bool_const0
 	jal	equality_test
-label2:
 	lw	$t1 12($a0)
-	beqz	$t1 label0
+	beq	$zero $t1 label1
+	# push args
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label3
 	la	$a0 str_const0
@@ -385,23 +463,30 @@ label3:
 	lw	$t1 8($a0)
 	lw	$t1 0($t1)
 	jalr		$t1
-	b	label1
-label0:
-	la	$a0 int_const1
+	b	label2
 label1:
-	la	$s2 bool_const1
-	la	$t2 bool_const1
-	move	$t1 $s2
+	la	$a0 int_const1
+label2:
 	la	$a0 bool_const1
-	beq	$t1 $t2 label6
+	# e1 we push, because if we store it in a register, it will be covered in e2 code method
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
+	la	$a0 bool_const1
+	# e2 in T2
+	move	$t2 $a0
+	# e1 in T1
+	lw	$t1 4($sp)
+	addiu	$sp $sp 4
+	la	$a0 bool_const1
 	la	$a1 bool_const0
 	jal	equality_test
-label6:
 	lw	$t1 12($a0)
-	beqz	$t1 label4
+	beq	$zero $t1 label5
 	la	$a0 int_const1
-	b	label5
-label4:
+	b	label6
+label5:
+	# push args
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label7
 	la	$a0 str_const0
@@ -411,29 +496,36 @@ label7:
 	lw	$t1 8($a0)
 	lw	$t1 0($t1)
 	jalr		$t1
-label5:
-	la	$s2 str_const1
+label6:
 	la	$a0 str_const1
-	bne	$a0 $zero label11
+	# e1 we push, because if we store it in a register, it will be covered in e2 code method
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
+	# push args
+	la	$a0 str_const1
+	bne	$a0 $zero label8
 	la	$a0 str_const0
 	li	$t1 5
 	jal	_dispatch_abort
-label11:
+label8:
 	lw	$t1 8($a0)
 	lw	$t1 8($t1)
 	jalr		$t1
-	move	$t1 $s2
+	# e2 in T2
 	move	$t2 $a0
+	# e1 in T1
+	lw	$t1 4($sp)
+	addiu	$sp $sp 4
 	la	$a0 bool_const1
-	beq	$t1 $t2 label10
 	la	$a1 bool_const0
 	jal	equality_test
-label10:
 	lw	$t1 12($a0)
-	beqz	$t1 label8
+	beq	$zero $t1 label10
 	la	$a0 int_const1
-	b	label9
-label8:
+	b	label11
+label10:
+	# push args
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label12
 	la	$a0 str_const0
@@ -443,21 +535,33 @@ label12:
 	lw	$t1 8($a0)
 	lw	$t1 0($t1)
 	jalr		$t1
-label9:
-	la	$s2 str_const2
-	move	$s1 $s2
-	la	$t2 str_const2
-	move	$t1 $s1
+label11:
+	la	$a0 String_protObj
+	jal	Object.copy
+	# now we push the value we creating into stack
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
+	# here we use fp as pointer
+	lw	$a0 -12($fp)
+	# e1 we push, because if we store it in a register, it will be covered in e2 code method
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
+	la	$a0 str_const2
+	# e2 in T2
+	move	$t2 $a0
+	# e1 in T1
+	lw	$t1 4($sp)
+	addiu	$sp $sp 4
 	la	$a0 bool_const1
-	beq	$t1 $t2 label15
 	la	$a1 bool_const0
 	jal	equality_test
-label15:
 	lw	$t1 12($a0)
-	beqz	$t1 label13
+	beq	$zero $t1 label14
 	la	$a0 int_const1
-	b	label14
-label13:
+	b	label15
+label14:
+	# push args
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label16
 	la	$a0 str_const0
@@ -467,17 +571,25 @@ label16:
 	lw	$t1 8($a0)
 	lw	$t1 0($t1)
 	jalr		$t1
-label14:
-	la	$s2 int_const2
-	la	$t2 int_const3
-	move	$t1 $s2
+label15:
+	addiu	$sp $sp 4
+	la	$a0 int_const2
+	# e1 we push, because if we store it in a register, it will be covered in e2 code method
+	sw	$a0 0($sp)
+	addiu	$sp $sp -4
+	la	$a0 int_const3
+	# e2 in T2
+	move	$t2 $a0
+	# e1 in T1
+	lw	$t1 4($sp)
+	addiu	$sp $sp 4
 	la	$a0 bool_const1
-	beq	$t1 $t2 label19
 	la	$a1 bool_const0
 	jal	equality_test
-label19:
 	lw	$t1 12($a0)
-	beqz	$t1 label17
+	beq	$zero $t1 label18
+	# push args
+	# the lable is self, so we load s0 to a0, s0 store the address of self
 	move	$a0 $s0
 	bne	$a0 $zero label20
 	la	$a0 str_const0
@@ -487,14 +599,15 @@ label20:
 	lw	$t1 8($a0)
 	lw	$t1 0($t1)
 	jalr		$t1
-	b	label18
-label17:
-	la	$a0 int_const1
+	b	label19
 label18:
-	lw	$s1 4($fp)
-	lw	$s2 0($fp)
-	lw	$fp 20($sp)
-	lw	$s0 16($sp)
-	lw	$ra 12($sp)
-	addiu	$sp $sp 20
+	la	$a0 int_const1
+label19:
+	# restore register
+	lw	$fp 12($sp)
+	lw	$s0 8($sp)
+	lw	$ra 4($sp)
+	addiu	$sp $sp 12
 	jr	$ra	
+
+# end of generated code
