@@ -326,6 +326,8 @@ program_class类的semant方法是语法制导翻译的入口，是语法制导�
     
 主要需要修改的文件：cgen.h  cgen.cc
 
+如何测试？进入PA5目录下，执行脚本make_check.sh即可
+
 
 
 官方评测脚本：wget https://courses.edx.org/assets/courseware/v1/2aa4dec0c84ec3a8d91e0c1d8814452b/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block/pa4-grading.pl
