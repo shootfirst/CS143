@@ -373,35 +373,14 @@ enum class BASE_LOC_TYPE {
 下面再介绍相关代码的具体布局，参考cool-runtime.pdf：
 
 + class_nameTab
-
     - class_name pointer 1      
-    
-    - ......
-    
-    - class_name pointer n
-
 + class objTab
-    
     - prototype object pointer 1
     - class_init pointer 1
-    
-    - ......
-    
-    - prototype object pointer n
-    - class_init pointer n
-
 + dispatch_table 1
-    
     - method pointer 1
-    
-    - ......
-    
-    - method pointer n
-    
 + ......
-
-+ dispatch_table n
-    
++ dispatch_table n 
     - garbage collector tag
 + prototype_obj 1
     - class tag 
@@ -410,9 +389,7 @@ enum class BASE_LOC_TYPE {
     - attribute 1
     - ......
     - attribute n
-    
 + ......
-
     - garbage collector tag
 + prototype_obj n
     - class tag 
