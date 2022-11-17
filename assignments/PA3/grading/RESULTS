@@ -1,1 +1,70 @@
-	(our tests)	Passed all tests -- congratulations!
+	-1 (addedlet)	 some addition with multiple lets
+	-1 (arithprecedence)	 arithmetic expressions to test precedence
+	-1 (assigngetstype)	 assigning a type to a variable
+	-1 (assignment)	 assignment expression
+	-1 (associativity+)	 testing associativity of +
+	-1 (associativity-)	 testing associativity of -
+	-1 (associativity-times)	 testing associativity of *
+	-1 (associativitydiv)	 testing associativity of /
+	-1 (atoi)	 the atoi program
+	-1 (attrcapitalname)	 an attribute with a capital name
+	-1 (badblock)	 a block with multiple errors
+	-1 (baddispatch1)	 bad dispatch syntax
+	-1 (baddispatch2)	 bad dispatch syntax
+	-1 (baddispatch3)	 bad dispatch syntax
+	-1 (baddispatch4)	 bad dispatch syntax
+	-1 (badexprlist)	 bad expr lists 
+	-1 (badfeaturenames)	 method and attribute names capitalized
+	-1 (badfeatures)	 multiple errors in features in a class
+	-1 (casemultiplebranch)	 a case with multiple branches
+	-1 (casenoexpr)	 case with no expr
+	-1 (classbadinherits)	 inherit from non-type
+	-1 (classbadname)	 class with incorrect name format (object not type)
+	-1 (classmethodonearg)	 simple class method
+	-1 (classnoname)	 class without a name
+	-1 (classonefield)	 simple class with one field
+	-1 (classtwofields)	 simple class with two fields
+	-1 (comparisons-assoc)	 testing associativity of comparisons
+	-1 (assignseq)	 sequential assignments
+	-1 (complex)	 a short program
+	-1 (dispatcharglist)	 dispatch with several arguments
+	-1 (dispatchnoargs)	 dispatch with no arguments
+	-1 (dispatchonearg)	 dispatch with one argument
+	-1 (emptyassign)	 an assignment with an empty right-hand side
+	-1 (emptymethodbody)	 an empty method body
+	-1 (emptyprogram)	 an empty program
+	-1 (emptystaticdispatch)	 a static dispatch with no type name
+	-1 (equalsassociativity)	 testing associativity of equals
+	-1 (extrasemicolonblock)	 a block that starts with a semicolon
+	-1 (firstbindingerrored)	 error recovery after a binding error
+	-1 (firstclasserrored)	 error recovery after a bad class declaration
+	-1 (formallists)	 methods with different numbers of formal parameters
+	-1 (ifexpressionblock)	 if expression with a block
+	-1 (ifnested)	 nested ifs
+	-1 (ifnoelse)	 if expression without else
+	-1 (ifnoelsebranch)	 if expression with no else expression
+	-1 (ifnofi)	 if expression with no fi
+	-1 (ifnothenbranch)	 if expression with no then branch
+	-1 (isvoidbadtype)	 isvoid called on a type
+	-1 (letassociativity)	 testing let associativity
+	-1 (letinit)	 let expression with an initialization
+	-1 (letinitmultiplebindings)	 let expression with multiple bindings
+	-1 (letnoinit)	 let expression with no initiatlization
+	-1 (letparens)	 some lets with various parens
+	-1 (lteassociativity)	 testing associativity of <=
+	-1 (multipleatdispatches)	 at dispatches with differing numbers of arguments
+	-1 (multipleattributes)	 a class with multiple attributes
+	-1 (multipleclasses)	 multiple classes in a file
+	-1 (multipledispatches)	 dispatches with differing numbers of arguments
+	-1 (multiplemethoderrors)	 a class with multiple methods and errors 
+	-1 (nestedblocks)	 nested expression blocks
+	-1 (nestedlet)	 nested let expressions with different numbers of bindings
+	-1 (newbadtype)	 new called on a bad type
+	-1 (returntypebad)	 return type with a lower-case name
+	-1 (secondbindingerrored)	 second binding of a let has an error
+	-1 (staticdispatchnoargs)	 static dispatch with no args
+	-1 (unaryassociativity)	 tests associativity of unary operators
+	-1 (while)	 valid and invalid while loops
+	-1 (whileexpressionblock)	 a while with an expression block
+	-1 (whilenoloop)	 a while without a loop
+	-1 (whileoneexpression)	 simple while with one expression

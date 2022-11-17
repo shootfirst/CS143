@@ -1,0 +1,328 @@
+1,323c1,3
+< 
+< _program
+< 
+<   _class
+<     Main
+<     IO
+<     filename
+<     (
+< 
+<     _method
+<       main
+<       SELF_TYPE
+< 
+<       _let
+<         c
+<         Complex
+< 
+<         _dispatch
+< 
+<           _new
+<             Complex
+<           : _no_type
+<           init
+<           (
+< 
+<           _int
+<             1
+<           : _no_type
+< 
+<           _int
+<             1
+<           : _no_type
+<           )
+<         : _no_type
+< 
+<         _cond
+< 
+<           _eq
+< 
+<             _dispatch
+< 
+<               _dispatch
+< 
+<                 _object
+<                   c
+<                 : _no_type
+<                 reflect_X
+<                 (
+<                 )
+<               : _no_type
+<               reflect_Y
+<               (
+<               )
+<             : _no_type
+< 
+<             _dispatch
+< 
+<               _object
+<                 c
+<               : _no_type
+<               reflect_0
+<               (
+<               )
+<             : _no_type
+<           : _no_type
+< 
+<           _dispatch
+< 
+<             _object
+<               self
+<             : _no_type
+<             out_string
+<             (
+< 
+<             _string
+<               "=)\n"
+<             : _no_type
+<             )
+<           : _no_type
+< 
+<           _dispatch
+< 
+<             _object
+<               self
+<             : _no_type
+<             out_string
+<             (
+< 
+<             _string
+<               "=(\n"
+<             : _no_type
+<             )
+<           : _no_type
+<         : _no_type
+<       : _no_type
+<     )
+< 
+<   _class
+<     Complex
+<     IO
+<     filename
+<     (
+< 
+<     _attr
+<       x
+<       Int
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _attr
+<       y
+<       Int
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _method
+<       init
+< 
+<       _formal
+<         a
+<         Int
+< 
+<       _formal
+<         b
+<         Int
+<       Complex
+< 
+<       _block
+< 
+<         _eq
+< 
+<           _object
+<             x
+<           : _no_type
+< 
+<           _object
+<             a
+<           : _no_type
+<         : _no_type
+< 
+<         _eq
+< 
+<           _object
+<             y
+<           : _no_type
+< 
+<           _object
+<             b
+<           : _no_type
+<         : _no_type
+< 
+<         _object
+<           self
+<         : _no_type
+<       : _no_type
+< 
+<     _method
+<       print
+<       Object
+< 
+<       _cond
+< 
+<         _eq
+< 
+<           _object
+<             y
+<           : _no_type
+< 
+<           _int
+<             0
+<           : _no_type
+<         : _no_type
+< 
+<         _dispatch
+< 
+<           _object
+<             self
+<           : _no_type
+<           out_int
+<           (
+< 
+<           _object
+<             x
+<           : _no_type
+<           )
+<         : _no_type
+< 
+<         _dispatch
+< 
+<           _dispatch
+< 
+<             _dispatch
+< 
+<               _dispatch
+< 
+<                 _object
+<                   self
+<                 : _no_type
+<                 out_int
+<                 (
+< 
+<                 _object
+<                   x
+<                 : _no_type
+<                 )
+<               : _no_type
+<               out_string
+<               (
+< 
+<               _string
+<                 "+"
+<               : _no_type
+<               )
+<             : _no_type
+<             out_int
+<             (
+< 
+<             _object
+<               y
+<             : _no_type
+<             )
+<           : _no_type
+<           out_string
+<           (
+< 
+<           _string
+<             "I"
+<           : _no_type
+<           )
+<         : _no_type
+<       : _no_type
+< 
+<     _method
+<       reflect_0
+<       Complex
+< 
+<       _block
+< 
+<         _eq
+< 
+<           _object
+<             x
+<           : _no_type
+< 
+<           _neg
+< 
+<             _object
+<               x
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _eq
+< 
+<           _object
+<             y
+<           : _no_type
+< 
+<           _neg
+< 
+<             _object
+<               y
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _object
+<           self
+<         : _no_type
+<       : _no_type
+< 
+<     _method
+<       reflect_X
+<       Complex
+< 
+<       _block
+< 
+<         _eq
+< 
+<           _object
+<             y
+<           : _no_type
+< 
+<           _neg
+< 
+<             _object
+<               y
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _object
+<           self
+<         : _no_type
+<       : _no_type
+< 
+<     _method
+<       reflect_Y
+<       Complex
+< 
+<       _block
+< 
+<         _eq
+< 
+<           _object
+<             x
+<           : _no_type
+< 
+<           _neg
+< 
+<             _object
+<               x
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _object
+<           self
+<         : _no_type
+<       : _no_type
+<     )
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION
+> Compilation halted due to lex and syntax errors

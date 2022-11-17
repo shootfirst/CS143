@@ -1,0 +1,7 @@
+1,3c1,2
+< filename, line 2: syntax error at or near LOCATION
+< filename, line 4: syntax error at or near LOCATION
+< filename, line 6: syntax error at or near LOCATION
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION

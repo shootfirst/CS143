@@ -1,0 +1,57 @@
+1,52c1,3
+< 
+< _program
+< 
+<   _class
+<     A
+<     Object
+<     filename
+<     (
+< 
+<     _attr
+<       x
+<       Int
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _attr
+<       y
+<       Bool
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _attr
+<       z
+<       Object
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _method
+<       f
+<       Bool
+< 
+<       _bool
+<         1
+<       : _no_type
+< 
+<     _attr
+<       a
+<       String
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _attr
+<       a
+<       IO
+< 
+<       _no_expr
+<       : _no_type
+<     )
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION
+> Compilation halted due to lex and syntax errors

@@ -1,0 +1,21 @@
+1,16c1,3
+< 
+< _program
+< 
+<   _class
+<     Hello
+<     Object
+<     filename
+<     (
+< 
+<     _attr
+<       foo
+<       Int
+< 
+<       _no_expr
+<       : _no_type
+<     )
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION
+> Compilation halted due to lex and syntax errors

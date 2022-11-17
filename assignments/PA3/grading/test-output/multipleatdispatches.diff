@@ -1,0 +1,143 @@
+1,138c1,3
+< 
+< _program
+< 
+<   _class
+<     A
+<     Object
+<     filename
+<     (
+< 
+<     _method
+<       f
+<       Object
+< 
+<       _block
+< 
+<         _static_dispatch
+< 
+<           _object
+<             e
+<           : _no_type
+<           A
+<           f
+<           (
+<           )
+<         : _no_type
+< 
+<         _static_dispatch
+< 
+<           _object
+<             e1
+<           : _no_type
+<           B
+<           g
+<           (
+< 
+<           _int
+<             1
+<           : _no_type
+<           )
+<         : _no_type
+< 
+<         _static_dispatch
+< 
+<           _object
+<             e2
+<           : _no_type
+<           C
+<           h
+<           (
+< 
+<           _int
+<             1
+<           : _no_type
+< 
+<           _int
+<             2
+<           : _no_type
+<           )
+<         : _no_type
+< 
+<         _static_dispatch
+< 
+<           _object
+<             e3
+<           : _no_type
+<           D
+<           f
+<           (
+< 
+<           _int
+<             1
+<           : _no_type
+< 
+<           _int
+<             2
+<           : _no_type
+< 
+<           _int
+<             3
+<           : _no_type
+<           )
+<         : _no_type
+< 
+<         _dispatch
+< 
+<           _object
+<             x
+<           : _no_type
+<           f
+<           (
+<           )
+<         : _no_type
+< 
+<         _dispatch
+< 
+<           _object
+<             y
+<           : _no_type
+<           g
+<           (
+< 
+<           _bool
+<             1
+<           : _no_type
+< 
+<           _bool
+<             0
+<           : _no_type
+<           )
+<         : _no_type
+< 
+<         _dispatch
+< 
+<           _object
+<             z
+<           : _no_type
+<           h
+<           (
+< 
+<           _int
+<             1
+<           : _no_type
+< 
+<           _int
+<             2
+<           : _no_type
+< 
+<           _int
+<             3
+<           : _no_type
+< 
+<           _int
+<             4
+<           : _no_type
+<           )
+<         : _no_type
+<       : _no_type
+<     )
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION
+> Compilation halted due to lex and syntax errors

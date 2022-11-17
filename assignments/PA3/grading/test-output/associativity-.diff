@@ -1,0 +1,66 @@
+1,61c1,3
+< 
+< _program
+< 
+<   _class
+<     Hello
+<     Object
+<     filename
+<     (
+< 
+<     _attr
+<       foo
+<       Int
+< 
+<       _no_expr
+<       : _no_type
+< 
+<     _method
+<       moo2
+< 
+<       _formal
+<         a
+<         String
+< 
+<       _formal
+<         b
+<         Int
+< 
+<       _formal
+<         c
+<         Int
+< 
+<       _formal
+<         d
+<         Int
+<       Hello
+< 
+<       _sub
+< 
+<         _sub
+< 
+<           _sub
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _object
+<           d
+<         : _no_type
+<       : _no_type
+<     )
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION
+> Compilation halted due to lex and syntax errors

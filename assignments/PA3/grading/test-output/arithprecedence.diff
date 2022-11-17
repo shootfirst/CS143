@@ -1,0 +1,237 @@
+1,232c1,3
+< 
+< _program
+< 
+<   _class
+<     A
+<     Object
+<     filename
+<     (
+< 
+<     _method
+<       f
+<       Int
+< 
+<       _block
+< 
+<         _sub
+< 
+<           _plus
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _plus
+< 
+<           _sub
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _plus
+< 
+<           _object
+<             a
+<           : _no_type
+< 
+<           _mul
+< 
+<             _object
+<               b
+<             : _no_type
+< 
+<             _object
+<               c
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _plus
+< 
+<           _mul
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _plus
+< 
+<           _object
+<             a
+<           : _no_type
+< 
+<           _divide
+< 
+<             _object
+<               b
+<             : _no_type
+< 
+<             _object
+<               c
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _plus
+< 
+<           _divide
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _sub
+< 
+<           _object
+<             a
+<           : _no_type
+< 
+<           _mul
+< 
+<             _object
+<               b
+<             : _no_type
+< 
+<             _object
+<               c
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _sub
+< 
+<           _mul
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _sub
+< 
+<           _object
+<             a
+<           : _no_type
+< 
+<           _divide
+< 
+<             _object
+<               b
+<             : _no_type
+< 
+<             _object
+<               c
+<             : _no_type
+<           : _no_type
+<         : _no_type
+< 
+<         _sub
+< 
+<           _divide
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _divide
+< 
+<           _mul
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+< 
+<         _mul
+< 
+<           _divide
+< 
+<             _object
+<               a
+<             : _no_type
+< 
+<             _object
+<               b
+<             : _no_type
+<           : _no_type
+< 
+<           _object
+<             c
+<           : _no_type
+<         : _no_type
+<       : _no_type
+<     )
+---
+> ../lexer: Command not found.
+> "<stdin>", line 0: syntax error at or near LOCATION
+> Compilation halted due to lex and syntax errors
