@@ -444,7 +444,7 @@ enum class BASE_LOC_TYPE {
 program class::cgen(ostream&)方法是代码生成的入口，在里面调用CgenClassTable的构造方法。
 
 + set_tag：设置所有类的class_tag。方法是按先序遍历继承树来设置各个class的class_tag，同时记录类节点深度和子节点tag区间。至于为什么这么做见case语句的code方法。主要是参考
-  此链接。
+  [此链接](https://github.com/wangdh15/cs143)。
   
 + CgenClassTable::code方法：是核心，设置上面相关表的具体布局代码生成，之后完成类的初始化代码生成，最后完成所有方法的代码生成。注意，三大类没有初始化则默认初始化（对任
   意表的ref方法，没有加label则代表生成该table地址，后面加label则代表生成此表，以下提到的生成或者一些行为，比如计算a+b的值，基本指生成相关mips代码根据语境感受）依次调用
