@@ -377,7 +377,8 @@ enum class BASE_LOC_TYPE {
 + class objTab
     - prototype object pointer 1
     - class_init pointer 1
-+ dispatch_table 1
+    
++ dispatch_table 1（踏马的这不就是各个类的虚函数表吗）
     - method pointer 1
 + ......
 + dispatch_table n 
@@ -407,7 +408,7 @@ enum class BASE_LOC_TYPE {
 
 + class_init n
 
-
+（各个类虚函数表所指向的函数）
 + class1.method 1
 
 + ......
