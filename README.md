@@ -408,7 +408,7 @@ enum class BASE_LOC_TYPE {
 
 + class_init n
 
-（各个类虚函数表所指向的函数）
+（各个类虚函数表所指向的虚函数）
 + class1.method 1
 
 + ......
