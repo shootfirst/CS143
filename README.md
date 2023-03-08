@@ -386,7 +386,7 @@ enum class BASE_LOC_TYPE {
 + prototype_obj 1
     - class tag 
     - object size (in 32-bit words)
-    - dispatchTab pointer
+    - dispatchTab pointer（踏马，这不就是虚函数表指针不）
     - attribute 1
     - ......
     - attribute n
