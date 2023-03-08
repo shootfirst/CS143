@@ -378,7 +378,7 @@ enum class BASE_LOC_TYPE {
     - prototype object pointer 1
     - class_init pointer 1
     
-+ dispatch_table 1（踏马的这不就是各个类的虚函数表吗）
++ dispatch_table 1（类似虚函数表吗）
     - method pointer 1
 + ......
 + dispatch_table n 
@@ -386,7 +386,7 @@ enum class BASE_LOC_TYPE {
 + prototype_obj 1
     - class tag 
     - object size (in 32-bit words)
-    - dispatchTab pointer（踏马，这不就是虚函数表指针不）
+    - dispatchTab pointer（类似虚函数表指针）
     - attribute 1
     - ......
     - attribute n
